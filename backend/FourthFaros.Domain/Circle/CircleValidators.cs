@@ -3,6 +3,7 @@ namespace FourthFaros.Domain.Circle;
 public static class CircleValidators
 {
     public const int NameMaxLength = 100;
+
     public const int LocationMaxLength = 100;
 
     public static void Name(string name)

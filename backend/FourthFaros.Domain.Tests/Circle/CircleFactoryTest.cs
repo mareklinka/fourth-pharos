@@ -69,19 +69,18 @@ public class CircleFactoryTest
     {
         var circle = CircleFactory.CreateCirle("Test circle", CircleAbility.ForgedInFire);
 
-        circle.StitchMaximum.ShouldBe(1);
-        circle.RefreshMaximum.ShouldBe(1);
-        circle.TrainMaximum.ShouldBe(1);
+        circle.ResourceMaximum.ShouldBe(1);
     }
 
-    [Fact]
-    public void NewCircleHasOneOfEachResource()
+    [Theory]
+    [InlineData(CircleResource.Stitch)]
+    [InlineData(CircleResource.Refresh)]
+    [InlineData(CircleResource.Train)]
+    public void NewCircleHasOneOfEachResource(CircleResource resource)
     {
         var circle = CircleFactory.CreateCirle("Test circle", CircleAbility.ForgedInFire);
 
-        circle.StitchRemaining.ShouldBe(1);
-        circle.RefreshRemaining.ShouldBe(1);
-        circle.TrainingRemaining.ShouldBe(1);
+        circle.Resources[resource].ShouldBe(1);
     }
 
     [Fact]
@@ -91,6 +90,18 @@ public class CircleFactoryTest
             .Abilities
             .ShouldHaveSingleItem()
             .ShouldBe(CircleAbility.ForgedInFire);
+
+    [Fact]
+    public void NewCircleWithStaminaTrainingHasGildenDice()
+    {
+        var circle = CircleFactory.CreateCirle("Test circle", CircleAbility.StaminaTraining);
+
+        circle
+            .Abilities
+            .ShouldHaveSingleItem()
+            .ShouldBe(CircleAbility.StaminaTraining);
+        circle.StaminaDice.ShouldBe(3);
+    }
 
     [Fact]
     public void NewCircleIsFirstLevel() =>

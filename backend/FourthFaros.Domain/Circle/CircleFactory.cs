@@ -1,5 +1,5 @@
-using System.Collections.Immutable;
 using FourthFaros.Domain.Circle.Models;
+using FourthFaros.Domain.Circle.Operations;
 
 namespace FourthFaros.Domain.Circle;
 
@@ -10,6 +10,6 @@ public static class CircleFactory
         CircleValidators.Name(name);
         CircleValidators.Location(location);
 
-        return new(name, location) { Abilities = ImmutableArray.Create(ability) };
+        return new CircleBase(name, location).AddAbility(ability);
     }
 }
