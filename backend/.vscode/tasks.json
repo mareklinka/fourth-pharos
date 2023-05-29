@@ -1,0 +1,43 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "isBuildCommand": true,
+            "args": [
+                "build",
+                "${workspaceFolder}/FourthFaros.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/FourthFaros.sln"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "test",
+            "command": "dotnet",
+            "type": "process",
+            "isTestCommand": true,
+            "args": [
+                "test",
+                "${workspaceFolder}/FourthFaros.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}
