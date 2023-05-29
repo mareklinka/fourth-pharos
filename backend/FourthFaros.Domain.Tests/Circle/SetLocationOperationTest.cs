@@ -5,10 +5,10 @@ using Shouldly;
 
 namespace FourthFaros.Domain.Tests.Circle;
 
-public class SetNameOperationTest
+public class SetLocationOperationTest
 {
     [Fact]
-    public void UpdateName() =>
+    public void UpdateLocation() =>
         CircleFactory
             .CreateCirle("Test Circle", CircleAbility.ForgedInFire)
             .SetName("New Name")
