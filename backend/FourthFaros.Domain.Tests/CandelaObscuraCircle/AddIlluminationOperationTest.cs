@@ -3,7 +3,6 @@ using FourthFaros.Domain.CandelaObscuraCircle.Features;
 using FourthFaros.Domain.CandelaObscuraCircle.Models;
 using FourthFaros.Domain.CandelaObscuraCircle.Operations;
 using FourthFaros.Domain.Features;
-using Shouldly;
 
 namespace FourthFaros.Domain.Tests.CandelaObscuraCircle;
 
