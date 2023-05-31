@@ -10,9 +10,14 @@ public static class AddAbilityOperation
     {
         var feature = circle.GetFeature<Circle, CircleAbilitiesFeature>();
 
-        if (feature.Abilities.Any(_ => _.Code == ability.Code))
+        if (feature.Abilities.Contains(ability))
         {
             throw DomainExceptions.CircleExceptions.AbilityAlreadyExists(ability.Code);
+        }
+
+        if (feature.AvailableAbilities == 0)
+        {
+            throw DomainExceptions.CircleExceptions.AbilityLimitReached();
         }
 
         circle = ability.OnAdded?.Invoke(circle) ?? circle;

@@ -14,7 +14,7 @@ public class RestoreResourceOperationTest
     [InlineData(CircleResource.Train)]
     public void RestoreResource(CircleResource resource) =>
         CircleFactory
-            .CreateCirle("Test Circle", CircleAbility.ForgedInFire)
+            .CreateCirle("Test Circle")
             .ConsumeResource(resource)
             .RestoreResource(resource)
             .GetFeature<Circle, CircleResourcesFeature>()
@@ -28,7 +28,7 @@ public class RestoreResourceOperationTest
     public void RestoreFullResource(CircleResource resource) =>
         Should.Throw<DomainActionException>(() =>
             CircleFactory
-                .CreateCirle("Test Circle", CircleAbility.ForgedInFire)
+                .CreateCirle("Test Circle")
                 .RestoreResource(resource))
             .Code
             .ShouldBe(nameof(DomainExceptions.CircleExceptions.ResourceFull));

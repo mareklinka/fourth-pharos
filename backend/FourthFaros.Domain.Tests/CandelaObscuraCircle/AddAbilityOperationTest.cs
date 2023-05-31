@@ -12,13 +12,25 @@ public class AddAbilityOperationTest
     public void AddAbility()
     {
         var circle = CircleFactory
-            .CreateCirle("Test Circle", CircleAbility.ForgedInFire)
+            .CreateCirle("Test Circle")
+            .AddAbility(CircleAbility.ForgedInFire);
+
+        var feature = circle.GetFeature<Circle, CircleAbilitiesFeature>();
+
+        feature.Abilities.ShouldHaveSingleItem();
+        feature.Abilities.ShouldContain(CircleAbility.ForgedInFire);
+    }
+
+    [Fact]
+    public void StaminaTraininghooksUpFeatureTest()
+    {
+        var circle = CircleFactory
+            .CreateCirle("Test Circle")
             .AddAbility(CircleAbility.StaminaTraining);
 
         var feature = circle.GetFeature<Circle, CircleAbilitiesFeature>();
 
-        feature.Abilities.Length.ShouldBe(2);
-        feature.Abilities.ShouldContain(CircleAbility.ForgedInFire);
+        feature.Abilities.ShouldHaveSingleItem();
         feature.Abilities.ShouldContain(CircleAbility.StaminaTraining);
         circle.GetFeature<Circle, StaminaTrainingFeature>().StaminaDice.ShouldBe(3);
     }
@@ -27,7 +39,21 @@ public class AddAbilityOperationTest
     public void AddExistingAbilityFails()
     {
         Should.Throw<DomainActionException>(() => CircleFactory
-            .CreateCirle("Test Circle", CircleAbility.ForgedInFire)
-            .AddAbility(CircleAbility.ForgedInFire));
+            .CreateCirle("Test Circle")
+            .AddAbility(CircleAbility.ForgedInFire)
+            .AddAbility(CircleAbility.ForgedInFire))
+        .Code
+        .ShouldBe(nameof(DomainExceptions.CircleExceptions.AbilityAlreadyExists));
+    }
+
+    [Fact]
+    public void AbilityLimitTest()
+    {
+        Should.Throw<DomainActionException>(() => CircleFactory
+            .CreateCirle("Test Circle")
+            .AddAbility(CircleAbility.ForgedInFire)
+            .AddAbility(CircleAbility.Interdisciplinary))
+        .Code
+        .ShouldBe(nameof(DomainExceptions.CircleExceptions.AbilityLimitReached));
     }
 }

@@ -16,7 +16,9 @@ public static class DomainExceptions
 
         public static DomainActionException ResourceFull(CircleResource resource) => new(nameof(ResourceFull), "The circle's resource is at maximum", resource);
 
-        public static DomainActionException AbilityAlreadyExists(string abilityCode) => new(nameof(ResourceFull), "The circle already has this ability", abilityCode);
+        public static DomainActionException AbilityAlreadyExists(string abilityCode) => new(nameof(AbilityAlreadyExists), "The circle already has this ability", abilityCode);
+
+        public static DomainActionException AbilityLimitReached() => new(nameof(AbilityLimitReached), "The circle cannot take a new ability");
 
         public static DomainActionException NotEnoughStaminaDice() => new(nameof(NotEnoughStaminaDice), "The circle doesn't have enough stamina dice to spend");
 

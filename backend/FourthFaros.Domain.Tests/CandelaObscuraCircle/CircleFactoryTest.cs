@@ -12,7 +12,7 @@ public class CircleFactoryTest
     public void EmptyNameFails()
     {
         Should
-            .Throw<DomainActionException>(() => CircleFactory.CreateCirle(string.Empty, CircleAbility.ForgedInFire))
+            .Throw<DomainActionException>(() => CircleFactory.CreateCirle(string.Empty))
             .Code
             .ShouldBe(nameof(DomainExceptions.CircleExceptions.CircleNameEmpty));
     }
@@ -21,7 +21,7 @@ public class CircleFactoryTest
     public void WhitespaceOnlyNameFails()
     {
         Should
-            .Throw<DomainActionException>(() => CircleFactory.CreateCirle(" \t", CircleAbility.ForgedInFire))
+            .Throw<DomainActionException>(() => CircleFactory.CreateCirle(" \t"))
             .Code
             .ShouldBe(nameof(DomainExceptions.CircleExceptions.CircleNameEmpty));
     }
@@ -29,15 +29,31 @@ public class CircleFactoryTest
     [Fact]
     public void NameMustNotExceedMaxLength()
     {
-        var ex = Should.Throw<DomainActionException>(() => CircleFactory.CreateCirle(new string('a', CircleValidators.NameMaxLength + 1), CircleAbility.ForgedInFire));
+        var ex = Should.Throw<DomainActionException>(() => CircleFactory.CreateCirle(new string('a', CircleValidators.NameMaxLength + 1)));
         ex.Code.ShouldBe(nameof(DomainExceptions.CircleExceptions.CircleNameTooLong));
         ex.GetParameters().ShouldHaveSingleItem().ShouldBeOfType<int>().ShouldBe(CircleValidators.NameMaxLength);
     }
 
     [Fact]
+    public void NewCircleHasCorrectFeatures() =>
+        Should.NotThrow(() =>
+        {
+            var circle = CircleFactory.CreateCirle("Test circle");
+
+            circle.Features.Count.ShouldBe(6);
+
+            circle.GetFeature<Circle, CircleNameFeature>();
+            circle.GetFeature<Circle, CircleLocationFeature>();
+            circle.GetFeature<Circle, CircleGearFeature>();
+            circle.GetFeature<Circle, CircleAbilitiesFeature>();
+            circle.GetFeature<Circle, CircleResourcesFeature>();
+            circle.GetFeature<Circle, CircleIlluminationFeature>();
+        });
+
+    [Fact]
     public void NewCircleWithoutLocation() =>
         CircleFactory
-            .CreateCirle("Test circle", CircleAbility.ForgedInFire)
+            .CreateCirle("Test circle")
             .GetFeature<Circle, CircleLocationFeature>()
             .Location
             .ShouldBeNull();
@@ -45,7 +61,7 @@ public class CircleFactoryTest
     [Fact]
     public void NewCircleWithLocation() =>
         CircleFactory
-            .CreateCirle("Test circle", CircleAbility.ForgedInFire)
+            .CreateCirle("Test circle")
             .SetLocation("Haunted Street 1")
             .GetFeature<Circle, CircleLocationFeature>()
             .Location
@@ -54,7 +70,7 @@ public class CircleFactoryTest
     [Fact]
     public void NewCircleHasZeroIllumination() =>
         CircleFactory
-            .CreateCirle("Test circle", CircleAbility.ForgedInFire)
+            .CreateCirle("Test circle")
             .GetFeature<Circle, CircleIlluminationFeature>()
             .Illumination
             .ShouldBe(0);
@@ -62,7 +78,7 @@ public class CircleFactoryTest
     [Fact]
     public void NewCircleHasZeroMilestone() =>
         CircleFactory
-            .CreateCirle("Test circle", CircleAbility.ForgedInFire)
+            .CreateCirle("Test circle")
             .GetFeature<Circle, CircleIlluminationFeature>()
             .Milestone
             .ShouldBe(CircleMilestone.None);
@@ -70,19 +86,19 @@ public class CircleFactoryTest
     [Fact]
     public void NewCircleHasNoGear() =>
         CircleFactory
-            .CreateCirle("Test circle", CircleAbility.ForgedInFire)
+            .CreateCirle("Test circle")
             .GetFeature<Circle, CircleGearFeature>()
             .Gear
             .ShouldBeEmpty();
 
     [Fact]
     public void NewCircleHasNoCharacters() =>
-        CircleFactory.CreateCirle("Test circle", CircleAbility.ForgedInFire).Characters.ShouldBeEmpty();
+        CircleFactory.CreateCirle("Test circle").Characters.ShouldBeEmpty();
 
     [Fact]
     public void NewCircleHasOneOfEachResourceMax() =>
         CircleFactory
-            .CreateCirle("Test circle", CircleAbility.ForgedInFire)
+            .CreateCirle("Test circle")
             .GetFeature<Circle, CircleResourcesFeature>()
             .ResourceMaximum
             .ShouldBe(1);
@@ -93,37 +109,15 @@ public class CircleFactoryTest
     [InlineData(CircleResource.Train)]
     public void NewCircleHasOneOfEachResource(CircleResource resource) =>
         CircleFactory
-            .CreateCirle("Test circle", CircleAbility.ForgedInFire)
+            .CreateCirle("Test circle")
             .GetFeature<Circle, CircleResourcesFeature>()
             .Resources[resource]
             .ShouldBe(1);
 
     [Fact]
-    public void NewCircleHasDeclaredAbility() =>
+    public void NewCircleIsFirstRank() =>
         CircleFactory
-            .CreateCirle("Test circle", CircleAbility.ForgedInFire)
-            .GetFeature<Circle, CircleAbilitiesFeature>()
-            .Abilities
-            .ShouldHaveSingleItem()
-            .ShouldBe(CircleAbility.ForgedInFire);
-
-    [Fact]
-    public void NewCircleWithStaminaTrainingHasGildenDice()
-    {
-        var circle = CircleFactory.CreateCirle("Test circle", CircleAbility.StaminaTraining);
-
-        circle
-            .GetFeature<Circle, CircleAbilitiesFeature>()
-            .Abilities
-            .ShouldHaveSingleItem()
-            .ShouldBe(CircleAbility.StaminaTraining);
-        circle.GetFeature<Circle, StaminaTrainingFeature>().StaminaDice.ShouldBe(3);
-    }
-
-    [Fact]
-    public void NewCircleIsFirstLevel() =>
-        CircleFactory
-            .CreateCirle("Test circle", CircleAbility.ForgedInFire)
+            .CreateCirle("Test circle")
             .GetFeature<Circle, CircleIlluminationFeature>()
             .Rank
             .ShouldBe(1);

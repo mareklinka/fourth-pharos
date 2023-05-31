@@ -11,7 +11,7 @@ public class RemoveGearOperationTest
     [Fact]
     public void RemoveExistingGear() =>
         CircleFactory
-            .CreateCirle("Test Circle", CircleAbility.ForgedInFire)
+            .CreateCirle("Test Circle")
             .AddGear("Lanterna Obscura")
             .RemoveGear("Lanterna Obscura")
             .GetFeature<Circle, CircleGearFeature>()
@@ -21,7 +21,7 @@ public class RemoveGearOperationTest
     [Fact]
     public void RemoveNonExistingGear() =>
         CircleFactory
-            .CreateCirle("Test Circle", CircleAbility.ForgedInFire)
+            .CreateCirle("Test Circle")
             .AddGear("Lanterna Obscura")
             .RemoveGear("A Magickal Doodad")
             .GetFeature<Circle, CircleGearFeature>()

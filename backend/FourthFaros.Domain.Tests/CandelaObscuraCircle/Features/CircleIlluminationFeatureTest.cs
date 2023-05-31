@@ -13,7 +13,7 @@ public class CircleIlluminationFeatureTest
     public void MilestoneTest(int illumination)
     {
         var feature = CircleFactory
-            .CreateCirle("Test Circle", CircleAbility.ForgedInFire)
+            .CreateCirle("Test Circle")
             .AddIllumination(illumination)
             .GetFeature<Circle, CircleIlluminationFeature>();
 
@@ -26,7 +26,7 @@ public class CircleIlluminationFeatureTest
     public void RankTest(int illuminationToAdd)
     {
         var feature = CircleFactory
-            .CreateCirle("Test Circle", CircleAbility.ForgedInFire)
+            .CreateCirle("Test Circle")
             .AddIllumination(illuminationToAdd)
             .GetFeature<Circle, CircleIlluminationFeature>();
 

@@ -14,7 +14,7 @@ public class ConsumeResourceOperationTest
     [InlineData(CircleResource.Train)]
     public void ConsumeResource(CircleResource resource) =>
         CircleFactory
-            .CreateCirle("Test Circle", CircleAbility.ForgedInFire)
+            .CreateCirle("Test Circle")
             .ConsumeResource(resource)
             .GetFeature<Circle, CircleResourcesFeature>()
             .Resources[resource]
@@ -27,7 +27,7 @@ public class ConsumeResourceOperationTest
     public void NotEnoughResource(CircleResource resource) =>
         Should.Throw<DomainActionException>(() =>
             CircleFactory
-                .CreateCirle("Test Circle", CircleAbility.ForgedInFire)
+                .CreateCirle("Test Circle")
                 .ConsumeResource(resource)
                 .ConsumeResource(resource))
             .Code

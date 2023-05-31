@@ -4,29 +4,32 @@ using FourthFaros.Domain.CandelaObscuraCircle.Models;
 using FourthFaros.Domain.CandelaObscuraCircle.Operations;
 using FourthFaros.Domain.Features;
 
-namespace FourthFaros.Domain.Tests.CandelaObscuraCircle;
+namespace FourthFaros.Domain.Tests.CandelaObscuraCircle.Features;
 
-public class RemoveAbilityOperationTest
+public class CircleAbilitiesFeatureTest
 {
     [Fact]
-    public void RemoveAbility() =>
+    public void DefaultAbilityLimitTest() =>
         CircleFactory
             .CreateCirle("Test Circle")
-            .RemoveAbility(CircleAbility.ForgedInFire)
             .GetFeature<Circle, CircleAbilitiesFeature>()
-            .Abilities
-            .Length
-            .ShouldBe(0);
+            .MaximumAbilities
+            .ShouldBe(1);
 
     [Fact]
-    public void RemoveNonExistingAbilityNoopTest() =>
+    public void DefaultAvailableAbilityTest() =>
+        CircleFactory
+            .CreateCirle("Test Circle")
+            .GetFeature<Circle, CircleAbilitiesFeature>()
+            .AvailableAbilities
+            .ShouldBe(1);
+
+    [Fact]
+    public void AddingAbilityDecreasesAvailableAbilities() =>
         CircleFactory
             .CreateCirle("Test Circle")
             .AddAbility(CircleAbility.ForgedInFire)
-            .RemoveAbility(CircleAbility.StaminaTraining)
             .GetFeature<Circle, CircleAbilitiesFeature>()
-            .Abilities
-            .ShouldHaveSingleItem()
-            .Code
-            .ShouldBe(CircleAbility.ForgedInFire.Code);
+            .AvailableAbilities
+            .ShouldBe(0);
 }

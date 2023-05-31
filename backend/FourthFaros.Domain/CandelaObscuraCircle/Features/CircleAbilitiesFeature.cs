@@ -11,4 +11,8 @@ public sealed record CircleAbilitiesFeature(Circle Target) : FeatureBase<Circle>
     public override int Version => 1;
 
     public ImmutableArray<CircleAbility> Abilities { get; init; } = ImmutableArray.Create<CircleAbility>();
+
+    public int MaximumAbilities => Target.GetFeature<Circle, CircleIlluminationFeature>().Rank;
+
+    public int AvailableAbilities => Target.GetFeature<Circle, CircleIlluminationFeature>().Rank - Abilities.Length;
 }

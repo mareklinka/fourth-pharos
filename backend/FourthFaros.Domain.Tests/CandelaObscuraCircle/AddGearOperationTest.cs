@@ -11,7 +11,7 @@ public class AddGearOperationTest
     [Fact]
     public void AddGear() =>
         CircleFactory
-            .CreateCirle("Test Circle", CircleAbility.ForgedInFire)
+            .CreateCirle("Test Circle")
             .AddGear("Lanterna Obscura")
             .GetFeature<Circle, CircleGearFeature>()
             .Gear
@@ -23,7 +23,7 @@ public class AddGearOperationTest
     public void EmptyNameFails()
     {
         Should
-            .Throw<DomainActionException>(() => CircleFactory.CreateCirle("Test Circle", CircleAbility.ForgedInFire).AddGear(string.Empty))
+            .Throw<DomainActionException>(() => CircleFactory.CreateCirle("Test Circle").AddGear(string.Empty))
             .Code
             .ShouldBe(nameof(DomainExceptions.CircleGearExceptions.GearNameEmpty));
     }
@@ -32,7 +32,7 @@ public class AddGearOperationTest
     public void WhitespaceOnlyNameFails()
     {
         Should
-            .Throw<DomainActionException>(() => CircleFactory.CreateCirle("Test Circle", CircleAbility.ForgedInFire).AddGear(" \t"))
+            .Throw<DomainActionException>(() => CircleFactory.CreateCirle("Test Circle").AddGear(" \t"))
             .Code
             .ShouldBe(nameof(DomainExceptions.CircleGearExceptions.GearNameEmpty));
     }
@@ -40,7 +40,7 @@ public class AddGearOperationTest
     [Fact]
     public void NameMustNotExceedMaxLength()
     {
-        var ex = Should.Throw<DomainActionException>(() => CircleFactory.CreateCirle("Test Circle", CircleAbility.ForgedInFire).AddGear(new string('a', CircleGearValidators.NameMaxLength + 1)));
+        var ex = Should.Throw<DomainActionException>(() => CircleFactory.CreateCirle("Test Circle").AddGear(new string('a', CircleGearValidators.NameMaxLength + 1)));
         ex.Code.ShouldBe(nameof(DomainExceptions.CircleGearExceptions.GearNameTooLong));
         ex.GetParameters().ShouldHaveSingleItem().ShouldBeOfType<int>().ShouldBe(CircleValidators.NameMaxLength);
     }

@@ -11,7 +11,7 @@ public class SetNameOperationTest
     [Fact]
     public void UpdateName() =>
         CircleFactory
-            .CreateCirle("Test Circle", CircleAbility.ForgedInFire)
+            .CreateCirle("Test Circle")
             .SetName("New Name")
             .GetFeature<Circle, CircleNameFeature>()
             .Name
@@ -20,7 +20,7 @@ public class SetNameOperationTest
     [Fact]
     public void EmptyNameFails()
     {
-        var circle = CircleFactory.CreateCirle("Test Circle", CircleAbility.ForgedInFire);
+        var circle = CircleFactory.CreateCirle("Test Circle");
 
         Should
             .Throw<DomainActionException>(() => circle.SetName(string.Empty))
@@ -31,7 +31,7 @@ public class SetNameOperationTest
     [Fact]
     public void WhitespaceOnlyNameFails()
     {
-        var circle = CircleFactory.CreateCirle("Test Circle", CircleAbility.ForgedInFire);
+        var circle = CircleFactory.CreateCirle("Test Circle");
 
         Should
             .Throw<DomainActionException>(() => circle.SetName(" \t"))
@@ -42,7 +42,7 @@ public class SetNameOperationTest
     [Fact]
     public void NameMustNotExceedMaxLength()
     {
-        var circle = CircleFactory.CreateCirle("Test Circle", CircleAbility.ForgedInFire);
+        var circle = CircleFactory.CreateCirle("Test Circle");
 
         var ex = Should.Throw<DomainActionException>(() => circle.SetName(new string('a', CircleValidators.NameMaxLength + 1)));
 

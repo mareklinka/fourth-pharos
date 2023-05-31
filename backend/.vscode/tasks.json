@@ -8,7 +8,6 @@
             "isBuildCommand": true,
             "args": [
                 "build",
-                "${workspaceFolder}/FourthFaros.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,9 +32,25 @@
             "isTestCommand": true,
             "args": [
                 "test",
-                "${workspaceFolder}/FourthFaros.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "test watch",
+            "command": "dotnet",
+            "type": "process",
+            "isTestCommand": true,
+            "args": [
+                "watch",
+                "test",
+                "--project",
+                "${workspaceFolder}/FourthFaros.sln"
             ],
             "problemMatcher": "$msCompile"
         }

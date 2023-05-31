@@ -13,7 +13,7 @@ public class AddIlluminationOperationTest
     public void AddOneIllumination(int illumination)
     {
         CircleFactory
-            .CreateCirle("Test Circle", CircleAbility.ForgedInFire)
+            .CreateCirle("Test Circle")
             .AddIllumination(illumination)
             .GetFeature<Circle, CircleIlluminationFeature>()
             .Illumination
