@@ -1,4 +1,4 @@
-using FourthFaros.Domain.Circle.Models;
+using FourthFaros.Domain.CandelaObscuraCircle.Models;
 
 namespace FourthFaros.Domain;
 

@@ -1,0 +1,19 @@
+using FourthFaros.Domain.CandelaObscuraCircle.Features;
+using FourthFaros.Domain.CandelaObscuraCircle.Models;
+using FourthFaros.Domain.Features;
+
+namespace FourthFaros.Domain.CandelaObscuraCircle.Operations;
+
+public static class RestoreResourceOperation
+{
+    public static Circle RestoreResource(this Circle circle, CircleResource resource)
+    {
+        var feature = circle.GetFeature<Circle, CircleResourcesFeature>();
+
+        var current = feature.Resources[resource];
+
+        return current == feature.ResourceMaximum
+            ? throw DomainExceptions.CircleExceptions.ResourceFull(resource)
+            : circle.UpdateFeature(feature with { Resources = feature.Resources.SetItem(resource, current + 1) });
+    }
+}
