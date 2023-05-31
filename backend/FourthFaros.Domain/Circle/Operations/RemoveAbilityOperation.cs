@@ -1,4 +1,6 @@
+using FourthFaros.Domain.Circle.Features;
 using FourthFaros.Domain.Circle.Models;
+using FourthFaros.Domain.Features;
 
 namespace FourthFaros.Domain.Circle.Operations;
 
@@ -6,11 +8,10 @@ public static class RemoveAbilityOperation
 {
     public static CircleBase RemoveAbility(this CircleBase circle, CircleAbility ability)
     {
-        if (ability == CircleAbility.StaminaTraining)
-        {
-            circle = circle with { StaminaDice = 0 };
-        }
+        var feature = circle.GetFeature<CircleBase, CircleAbilitiesFeature>();
 
-        return circle with { Abilities = circle.Abilities.Remove(ability) };
+        circle = ability.OnRemoved?.Invoke(circle) ?? circle;
+
+        return circle.UpdateFeature(feature with { Abilities = feature.Abilities.Remove(ability) });
     }
 }

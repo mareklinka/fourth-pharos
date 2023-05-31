@@ -1,4 +1,6 @@
+using FourthFaros.Domain.Circle.Features;
 using FourthFaros.Domain.Circle.Models;
+using FourthFaros.Domain.Features;
 
 namespace FourthFaros.Domain.Circle.Operations;
 
@@ -6,18 +8,15 @@ public static class AddIlluminationOperation
 {
     public static CircleBase AddIllumination(this CircleBase circle, int illumination)
     {
-        if (illumination <= 0)
+        var feature = circle.GetFeature<CircleBase, CircleIlluminationFeature>();
+
+        if (feature.Illumination + illumination < 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(illumination), "Illumination must be >= 0");
+            DomainExceptions.CircleExceptions.IlluminationBelowZero();
         }
 
-        var remainder = (circle.Illumination + illumination) % 24;
-        var newRanks = illumination / 24;
+        feature = feature with { Illumination = feature.Illumination + illumination };
 
-        return (newRanks, remainder) switch
-        {
-            (0, var i) => circle with { Illumination = i },
-            (int r, var i) => circle with { Rank = circle.Rank + r, Illumination = i }
-        };
+        return circle.UpdateFeature(feature);
     }
 }

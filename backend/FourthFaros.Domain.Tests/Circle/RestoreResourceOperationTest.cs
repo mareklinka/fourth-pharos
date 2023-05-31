@@ -1,6 +1,8 @@
 using FourthFaros.Domain.Circle;
+using FourthFaros.Domain.Circle.Features;
 using FourthFaros.Domain.Circle.Models;
 using FourthFaros.Domain.Circle.Operations;
+using FourthFaros.Domain.Features;
 using Shouldly;
 
 namespace FourthFaros.Domain.Tests.Circle;
@@ -16,6 +18,7 @@ public class RestoreResourceOperationTest
             .CreateCirle("Test Circle", CircleAbility.ForgedInFire)
             .ConsumeResource(resource)
             .RestoreResource(resource)
+            .GetFeature<CircleBase, CircleResourcesFeature>()
             .Resources[resource]
             .ShouldBe(1);
 

@@ -1,4 +1,6 @@
+using FourthFaros.Domain.Circle.Features;
 using FourthFaros.Domain.Circle.Models;
+using FourthFaros.Domain.Features;
 
 namespace FourthFaros.Domain.Circle.Operations;
 
@@ -6,10 +8,12 @@ public static class ConsumeResourceOperation
 {
     public static CircleBase ConsumeResource(this CircleBase circle, CircleResource resource)
     {
-        return circle.Resources[resource] switch
+        var feature = circle.GetFeature<CircleBase, CircleResourcesFeature>();
+
+        return feature.Resources[resource] switch
         {
             < 1 => throw DomainExceptions.CircleExceptions.NotEnoughResource(resource),
-            int amount => circle with { Resources = circle.Resources.SetItem(resource, amount - 1) }
+            int current => circle.UpdateFeature(feature with { Resources = feature.Resources.SetItem(resource, current - 1) })
         };
     }
 }

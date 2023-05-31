@@ -1,6 +1,8 @@
 using FourthFaros.Domain.Circle;
+using FourthFaros.Domain.Circle.Features;
 using FourthFaros.Domain.Circle.Models;
 using FourthFaros.Domain.Circle.Operations;
+using FourthFaros.Domain.Features;
 using Shouldly;
 
 namespace FourthFaros.Domain.Tests.Circle;
@@ -12,6 +14,7 @@ public class SetNameOperationTest
         CircleFactory
             .CreateCirle("Test Circle", CircleAbility.ForgedInFire)
             .SetName("New Name")
+            .GetFeature<CircleBase, CircleNameFeature>()
             .Name
             .ShouldBe("New Name");
 

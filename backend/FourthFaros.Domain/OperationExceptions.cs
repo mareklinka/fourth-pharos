@@ -21,6 +21,8 @@ public static class DomainExceptions
         public static DomainActionException NotEnoughStaminaDice() => new(nameof(NotEnoughStaminaDice), "The circle doesn't have enough stamina dice to spend");
 
         public static DomainActionException StaminaDiceFull() => new(nameof(StaminaDiceFull), "The circle's stamina dice are at maximum");
+
+        public static DomainActionException IlluminationBelowZero() => new(nameof(IlluminationBelowZero), "Illumination cannot be less than 0");
     }
 
     public static class CircleGearExceptions
@@ -28,5 +30,11 @@ public static class DomainExceptions
         public static DomainActionException GearNameEmpty() => new(nameof(GearNameEmpty), "The gear name must not be empty");
 
         public static DomainActionException GearNameTooLong(int length) => new(nameof(GearNameTooLong), $"The gear name must not exceed {length} characters", length);
+    }
+
+    public static class FeatureExceptions
+    {
+        public static DomainActionException FeatureNotAttached(string featureName) =>
+            new(nameof(FeatureNotAttached), $"The feature {featureName} is not available");
     }
 }
