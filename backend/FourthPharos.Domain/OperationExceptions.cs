@@ -42,8 +42,10 @@ public static class DomainExceptions
 
     public static class CharacterExceptions
     {
-        public static DomainActionException CircleNameEmpty() => new(nameof(CircleNameEmpty), "The character name must not be empty");
+        public static DomainActionException CharacterNameEmpty() => new(nameof(CharacterNameEmpty), "The character name must not be empty");
 
-        public static DomainActionException CircleNameTooLong(int length) => new(nameof(CircleNameTooLong), $"The character name must not exceed {length} characters", length);
+        public static DomainActionException CharacterNameTooLong(int length) => new(nameof(CharacterNameTooLong), $"The character name must not exceed {length} characters", length);
+
+        public static DomainActionException BasicInfoTooLong(int length) => new(nameof(BasicInfoTooLong), $"The character name must not exceed {length} characters", length);
     }
 }

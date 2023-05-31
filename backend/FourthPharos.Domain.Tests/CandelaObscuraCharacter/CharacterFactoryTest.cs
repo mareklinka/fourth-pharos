@@ -13,7 +13,7 @@ public class CharacterFactoryTest
         Should
             .Throw<DomainActionException>(() => CharacterFactory.CreateCharacter(string.Empty))
             .Code
-            .ShouldBe(nameof(DomainExceptions.CharacterExceptions.CircleNameEmpty));
+            .ShouldBe(nameof(DomainExceptions.CharacterExceptions.CharacterNameEmpty));
     }
 
     [Fact]
@@ -22,15 +22,15 @@ public class CharacterFactoryTest
         Should
             .Throw<DomainActionException>(() => CharacterFactory.CreateCharacter(" \t"))
             .Code
-            .ShouldBe(nameof(DomainExceptions.CharacterExceptions.CircleNameEmpty));
+            .ShouldBe(nameof(DomainExceptions.CharacterExceptions.CharacterNameEmpty));
     }
 
     [Fact]
     public void NameMustNotExceedMaxLength()
     {
-        var ex = Should.Throw<DomainActionException>(() => CharacterFactory.CreateCharacter(new string('a', CharacterValidators.NameMaxLength + 1)));
-        ex.Code.ShouldBe(nameof(DomainExceptions.CharacterExceptions.CircleNameTooLong));
-        ex.GetParameters().ShouldHaveSingleItem().ShouldBeOfType<int>().ShouldBe(CharacterValidators.NameMaxLength);
+        var ex = Should.Throw<DomainActionException>(() => CharacterFactory.CreateCharacter(new string('a', CharacterValidators.BasicInfoMaxLength + 1)));
+        ex.Code.ShouldBe(nameof(DomainExceptions.CharacterExceptions.CharacterNameTooLong));
+        ex.GetParameters().ShouldHaveSingleItem().ShouldBeOfType<int>().ShouldBe(CharacterValidators.BasicInfoMaxLength);
     }
 
     [Fact]

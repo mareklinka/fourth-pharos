@@ -4,32 +4,32 @@ using FourthPharos.Domain.CandelaObscuraCircle.Models;
 using FourthPharos.Domain.CandelaObscuraCircle.Operations;
 using FourthPharos.Domain.Features;
 
-namespace FourthPharos.Domain.Tests.CandelaObscuraCircle;
+namespace FourthPharos.Domain.Tests.CandelaObscuraCircle.Operations;
 
-public class RestoreResourceOperationTest
+public class ConsumeResourceOperationTest
 {
     [Theory]
     [InlineData(CircleResource.Stitch)]
     [InlineData(CircleResource.Refresh)]
     [InlineData(CircleResource.Train)]
-    public void RestoreResource(CircleResource resource) =>
+    public void ConsumeResource(CircleResource resource) =>
         CircleFactory
             .CreateCirle("Test Circle")
             .ConsumeResource(resource)
-            .RestoreResource(resource)
             .GetFeature<Circle, CircleResourcesFeature>()
             .Resources[resource]
-            .ShouldBe(1);
+            .ShouldBe(0);
 
     [Theory]
     [InlineData(CircleResource.Stitch)]
     [InlineData(CircleResource.Refresh)]
     [InlineData(CircleResource.Train)]
-    public void RestoreFullResource(CircleResource resource) =>
+    public void NotEnoughResource(CircleResource resource) =>
         Should.Throw<DomainActionException>(() =>
             CircleFactory
                 .CreateCirle("Test Circle")
-                .RestoreResource(resource))
+                .ConsumeResource(resource)
+                .ConsumeResource(resource))
             .Code
-            .ShouldBe(nameof(DomainExceptions.CircleExceptions.ResourceFull));
+            .ShouldBe(nameof(DomainExceptions.CircleExceptions.NotEnoughResource));
 }

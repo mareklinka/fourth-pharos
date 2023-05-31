@@ -4,7 +4,7 @@ using FourthPharos.Domain.CandelaObscuraCircle.Models;
 using FourthPharos.Domain.CandelaObscuraCircle.Operations;
 using FourthPharos.Domain.Features;
 
-namespace FourthPharos.Domain.Tests.CandelaObscuraCircle;
+namespace FourthPharos.Domain.Tests.CandelaObscuraCircle.Operations;
 
 public class ConsumeStaminaDiceOperationTest
 {

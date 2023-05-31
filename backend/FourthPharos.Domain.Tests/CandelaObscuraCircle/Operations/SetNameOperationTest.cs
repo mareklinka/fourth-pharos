@@ -4,12 +4,12 @@ using FourthPharos.Domain.CandelaObscuraCircle.Models;
 using FourthPharos.Domain.CandelaObscuraCircle.Operations;
 using FourthPharos.Domain.Features;
 
-namespace FourthPharos.Domain.Tests.CandelaObscuraCircle;
+namespace FourthPharos.Domain.Tests.CandelaObscuraCircle.Operations;
 
-public class SetLocationOperationTest
+public class SetNameOperationTest
 {
     [Fact]
-    public void UpdateLocation() =>
+    public void UpdateName() =>
         CircleFactory
             .CreateCirle("Test Circle")
             .SetName("New Name")

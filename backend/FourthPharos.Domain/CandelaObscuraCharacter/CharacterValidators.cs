@@ -2,18 +2,31 @@ namespace FourthPharos.Domain.CandelaObscuraCharacter;
 
 public static class CharacterValidators
 {
-    public const int NameMaxLength = 100;
+    public const int BasicInfoMaxLength = 100;
 
     public static void Name(string name)
     {
         if (string.IsNullOrWhiteSpace(name))
         {
-            throw DomainExceptions.CircleExceptions.CircleNameEmpty();
+            throw DomainExceptions.CharacterExceptions.CharacterNameEmpty();
         }
 
-        if (name.Length > NameMaxLength)
+        if (name.Length > BasicInfoMaxLength)
         {
-            throw DomainExceptions.CircleExceptions.CircleNameTooLong(NameMaxLength);
+            throw DomainExceptions.CharacterExceptions.CharacterNameTooLong(BasicInfoMaxLength);
+        }
+    }
+
+    public static void BasicInfo(string? basicInfo)
+    {
+        if (basicInfo is null)
+        {
+            return;
+        }
+
+        if (basicInfo.Length > BasicInfoMaxLength)
+        {
+            throw DomainExceptions.CharacterExceptions.BasicInfoTooLong(BasicInfoMaxLength);
         }
     }
 }
