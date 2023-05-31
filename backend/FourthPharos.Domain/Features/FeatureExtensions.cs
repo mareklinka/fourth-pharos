@@ -42,7 +42,7 @@ public static class FeatureExtensions
 
         if (feature is not null)
         {
-            target.Features = target.Features = target.Features.Remove(feature);
+            target.Features = target.Features.Remove(feature);
         }
 
         return target;

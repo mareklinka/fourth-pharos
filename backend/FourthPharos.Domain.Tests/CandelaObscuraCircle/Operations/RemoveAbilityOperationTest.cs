@@ -29,4 +29,12 @@ public class RemoveAbilityOperationTest
             .ShouldHaveSingleItem()
             .Code
             .ShouldBe(CircleAbility.ForgedInFire.Code);
+
+    [Fact]
+    public void StaminaTrainingUnhooksFeatureTest() =>
+        CircleFactory
+            .CreateCirle("Test Circle")
+            .AddAbility(CircleAbility.StaminaTraining)
+            .RemoveAbility(CircleAbility.StaminaTraining)
+            .TryGetFeature<Circle, StaminaTrainingFeature>().ShouldBeNull();
 }

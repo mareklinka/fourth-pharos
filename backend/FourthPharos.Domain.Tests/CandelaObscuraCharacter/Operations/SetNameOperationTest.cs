@@ -2,10 +2,6 @@ using FourthPharos.Domain.CandelaObscuraCharacter;
 using FourthPharos.Domain.CandelaObscuraCharacter.Features;
 using FourthPharos.Domain.CandelaObscuraCharacter.Models;
 using FourthPharos.Domain.CandelaObscuraCharacter.Operations;
-using FourthPharos.Domain.CandelaObscuraCircle;
-using FourthPharos.Domain.CandelaObscuraCircle.Features;
-using FourthPharos.Domain.CandelaObscuraCircle.Models;
-using FourthPharos.Domain.CandelaObscuraCircle.Operations;
 using FourthPharos.Domain.Features;
 
 namespace FourthPharos.Domain.Tests.CandelaObscuraCharacter.Operations;

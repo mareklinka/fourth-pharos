@@ -22,7 +22,7 @@ public class AddAbilityOperationTest
     }
 
     [Fact]
-    public void StaminaTraininghooksUpFeatureTest()
+    public void StaminaTrainingHooksUpFeatureTest()
     {
         var circle = CircleFactory
             .CreateCirle("Test Circle")
