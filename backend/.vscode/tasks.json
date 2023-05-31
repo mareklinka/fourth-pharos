@@ -21,7 +21,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/FourthFaros.sln"
+                "${workspaceFolder}/FourthPharos.sln"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -50,7 +50,7 @@
                 "watch",
                 "test",
                 "--project",
-                "${workspaceFolder}/FourthFaros.sln"
+                "${workspaceFolder}/FourthPharos.sln"
             ],
             "problemMatcher": "$msCompile"
         }
