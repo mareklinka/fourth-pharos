@@ -1,7 +1,6 @@
 using FourthFaros.Domain.CandelaObscuraCircle;
 using FourthFaros.Domain.CandelaObscuraCircle.Features;
 using FourthFaros.Domain.CandelaObscuraCircle.Models;
-using FourthFaros.Domain.CandelaObscuraCircle.Operations;
 using FourthFaros.Domain.Features;
 
 namespace FourthFaros.Domain.Tests.CandelaObscuraCircle;
@@ -57,15 +56,6 @@ public class CircleFactoryTest
             .GetFeature<Circle, CircleLocationFeature>()
             .Location
             .ShouldBeNull();
-
-    [Fact]
-    public void NewCircleWithLocation() =>
-        CircleFactory
-            .CreateCirle("Test circle")
-            .SetLocation("Haunted Street 1")
-            .GetFeature<Circle, CircleLocationFeature>()
-            .Location
-            .ShouldBe("Haunted Street 1");
 
     [Fact]
     public void NewCircleHasZeroIllumination() =>

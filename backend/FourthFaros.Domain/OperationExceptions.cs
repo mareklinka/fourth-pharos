@@ -39,4 +39,11 @@ public static class DomainExceptions
         public static DomainActionException FeatureNotAttached(string featureName) =>
             new(nameof(FeatureNotAttached), $"The feature {featureName} is not available");
     }
+
+    public static class CharacterExceptions
+    {
+        public static DomainActionException CircleNameEmpty() => new(nameof(CircleNameEmpty), "The character name must not be empty");
+
+        public static DomainActionException CircleNameTooLong(int length) => new(nameof(CircleNameTooLong), $"The character name must not exceed {length} characters", length);
+    }
 }
