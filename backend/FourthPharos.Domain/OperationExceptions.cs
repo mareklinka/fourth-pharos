@@ -47,5 +47,15 @@ public static class DomainExceptions
         public static DomainActionException CharacterNameTooLong(int length) => new(nameof(CharacterNameTooLong), $"The character name must not exceed {length} characters", length);
 
         public static DomainActionException BasicInfoTooLong(int length) => new(nameof(BasicInfoTooLong), $"The character name must not exceed {length} characters", length);
+
+        public static DomainActionException InsufficientDrive() => new(nameof(InsufficientDrive), "The character doesn't have enough drive");
+
+        public static DomainActionException MaximumDriveReached() => new(nameof(MaximumDriveReached), "The character has maximum allowed drive");
+
+        public static DomainActionException MaximumDriveOutOfRange() => new(nameof(MaximumDriveOutOfRange), "Maximum drive must be between 0 and 9");
+
+        public static DomainActionException ActionRankOutOfRange() => new(nameof(ActionRankOutOfRange), "Action rank must be between 0 and 3");
+
+        public static DomainActionException InvalidAction(string actionCode) => new(nameof(InvalidAction), $"Action {actionCode} does not exist", actionCode);
     }
 }

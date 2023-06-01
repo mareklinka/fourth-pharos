@@ -29,4 +29,20 @@ public static class CharacterValidators
             throw DomainExceptions.CharacterExceptions.BasicInfoTooLong(BasicInfoMaxLength);
         }
     }
+
+    public static void MaximumDrive(int drive)
+    {
+        if (drive is < 0 or > 9)
+        {
+            throw DomainExceptions.CharacterExceptions.MaximumDriveOutOfRange();
+        }
+    }
+
+    public static void ActionRating(int drive)
+    {
+        if (drive is < 0 or > 3)
+        {
+            throw DomainExceptions.CharacterExceptions.ActionRankOutOfRange();
+        }
+    }
 }

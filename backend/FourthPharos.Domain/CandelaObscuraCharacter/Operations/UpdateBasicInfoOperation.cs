@@ -4,7 +4,7 @@ using FourthPharos.Domain.Features;
 
 namespace FourthPharos.Domain.CandelaObscuraCharacter.Operations;
 
-public static class UpdateBasicInfoOperations
+public static class UpdateBasicInfoOperation
 {
     public static Character UpdateBasicInfo(this Character character, BasicInfoModel basicInfo)
     {

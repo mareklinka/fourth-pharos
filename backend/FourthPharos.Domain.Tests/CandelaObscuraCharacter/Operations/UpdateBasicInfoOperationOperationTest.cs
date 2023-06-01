@@ -6,7 +6,7 @@ using FourthPharos.Domain.Features;
 
 namespace FourthPharos.Domain.Tests.CandelaObscuraCharacter.Operations;
 
-public class SetBasicInfoTest
+public class UpdateBasicInfoOperationOperationTest
 {
     [Fact]
     public void UpdateBasicInfo()
