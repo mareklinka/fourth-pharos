@@ -20,15 +20,21 @@ public static class FeatureExtensions
         where TTarget : FeatureTarget<TTarget>
         where TFeature : FeatureBase<TTarget>
     {
-        target.Features = target.Features.Remove(feature).Add(feature);
+        var t = target.RemoveFeature<TTarget, TFeature>();
+        t.Features = t.Features.Add(feature);
 
-        return target;
+        return t;
     }
 
     public static TTarget AddFeature<TTarget, TFeature>(this TTarget target, Func<TTarget, TFeature> feature)
         where TTarget : FeatureTarget<TTarget>
         where TFeature : FeatureBase<TTarget>
     {
+        if (target.Features.OfType<TFeature>().Any())
+        {
+            throw DomainExceptions.FeatureExceptions.FeatureAlreadyAttached(typeof(TFeature).Name);
+        }
+
         target.Features = target.Features.Add(feature(target));
 
         return target;

@@ -12,7 +12,6 @@ public class CharacterCunningFeatureTest
     {
         var feature = CharacterFactory
             .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterCunningFeature(t))
             .GetFeature<Character, CharacterCunningFeature>();
 
         feature.Actions.Count.ShouldBe(3);
@@ -33,7 +32,6 @@ public class CharacterCunningFeatureTest
     {
         var feature = CharacterFactory
             .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterCunningFeature(t))
             .GetFeature<Character, CharacterCunningFeature>();
 
         var action = feature.Actions[actionCode];
@@ -47,7 +45,6 @@ public class CharacterCunningFeatureTest
     {
         var feature = CharacterFactory
             .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterCunningFeature(t))
             .GetFeature<Character, CharacterCunningFeature>()
             with
         { DriveMax = drive };

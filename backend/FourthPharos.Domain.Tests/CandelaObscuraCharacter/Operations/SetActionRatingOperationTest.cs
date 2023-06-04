@@ -12,9 +12,7 @@ public class SetActionRatingOperationTest
     [MemberData(nameof(NerveRatings))]
     public void SetsNerveActionRating(string actionCode, int rating)
     {
-        var character = CharacterFactory
-            .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterNerveFeature(t));
+        var character = CharacterFactory.CreateCharacter("Crowley Thornwood");
 
         var feature = character.GetFeature<Character, CharacterNerveFeature>();
         var action = feature.Actions[actionCode];
@@ -32,9 +30,7 @@ public class SetActionRatingOperationTest
     [MemberData(nameof(CunningRatings))]
     public void SetsCunningActionRating(string actionCode, int rating)
     {
-        var character = CharacterFactory
-            .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterCunningFeature(t));
+        var character = CharacterFactory.CreateCharacter("Crowley Thornwood");
 
         var feature = character.GetFeature<Character, CharacterCunningFeature>();
         var action = feature.Actions[actionCode];
@@ -52,9 +48,7 @@ public class SetActionRatingOperationTest
     [MemberData(nameof(IntuitionRatings))]
     public void SetsIntuitionActionRating(string actionCode, int rating)
     {
-        var character = CharacterFactory
-            .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterIntuitionFeature(t));
+        var character = CharacterFactory.CreateCharacter("Crowley Thornwood");
 
         var feature = character.GetFeature<Character, CharacterIntuitionFeature>();
         var action = feature.Actions[actionCode];

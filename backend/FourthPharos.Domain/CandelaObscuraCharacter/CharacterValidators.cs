@@ -4,6 +4,8 @@ public static class CharacterValidators
 {
     public const int BasicInfoMaxLength = 100;
 
+    public const int ScarDescriptionMaxLength = 1000;
+
     public static void Name(string name)
     {
         if (string.IsNullOrWhiteSpace(name))
@@ -43,6 +45,19 @@ public static class CharacterValidators
         if (drive is < 0 or > 3)
         {
             throw DomainExceptions.CharacterExceptions.ActionRankOutOfRange();
+        }
+    }
+
+    public static void ScarDescription(string? description)
+    {
+        if (description is null)
+        {
+            return;
+        }
+
+        if (description.Length > ScarDescriptionMaxLength)
+        {
+            throw DomainExceptions.CharacterExceptions.ScarDescriptionTooLong(BasicInfoMaxLength);
         }
     }
 }

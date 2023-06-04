@@ -13,7 +13,6 @@ public class SetMaximumDriveOperationTest
     public void SetsMaximumNerveDrive(int drive) =>
         CharacterFactory
             .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterNerveFeature(t))
             .SetMaximumDrive<CharacterNerveFeature>(drive)
             .GetFeature<Character, CharacterNerveFeature>()
             .DriveMax
@@ -23,9 +22,7 @@ public class SetMaximumDriveOperationTest
     [MemberData(nameof(Drives))]
     public void DecreasesRemainingNerveDrive(int drive)
     {
-        var character = CharacterFactory
-            .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterNerveFeature(t));
+        var character = CharacterFactory.CreateCharacter("Crowley Thornwood");
 
         var feature = character.GetFeature<Character, CharacterNerveFeature>();
 
@@ -44,7 +41,6 @@ public class SetMaximumDriveOperationTest
         Should.Throw<DomainActionException>(() =>
             CharacterFactory
                 .CreateCharacter("Crowley Thornwood")
-                .AddFeature(t => new CharacterNerveFeature(t))
                 .SetMaximumDrive<CharacterNerveFeature>(drive)
                 .GetFeature<Character, CharacterNerveFeature>()
                 .DriveMax
@@ -57,7 +53,6 @@ public class SetMaximumDriveOperationTest
     public void SetsMaximumCunningDrive(int drive) =>
         CharacterFactory
             .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterCunningFeature(t))
             .SetMaximumDrive<CharacterCunningFeature>(drive)
             .GetFeature<Character, CharacterCunningFeature>()
             .DriveMax
@@ -67,9 +62,7 @@ public class SetMaximumDriveOperationTest
     [MemberData(nameof(Drives))]
     public void DecreasesRemainingCunningDrive(int drive)
     {
-        var character = CharacterFactory
-            .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterCunningFeature(t));
+        var character = CharacterFactory.CreateCharacter("Crowley Thornwood");
 
         var feature = character.GetFeature<Character, CharacterCunningFeature>();
 
@@ -88,7 +81,6 @@ public class SetMaximumDriveOperationTest
         Should.Throw<DomainActionException>(() =>
             CharacterFactory
                 .CreateCharacter("Crowley Thornwood")
-                .AddFeature(t => new CharacterCunningFeature(t))
                 .SetMaximumDrive<CharacterCunningFeature>(drive)
                 .GetFeature<Character, CharacterCunningFeature>()
                 .DriveMax
@@ -101,7 +93,6 @@ public class SetMaximumDriveOperationTest
     public void SetsMaximumIntuitionDrive(int drive) =>
         CharacterFactory
             .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterIntuitionFeature(t))
             .SetMaximumDrive<CharacterIntuitionFeature>(drive)
             .GetFeature<Character, CharacterIntuitionFeature>()
             .DriveMax
@@ -111,9 +102,7 @@ public class SetMaximumDriveOperationTest
     [MemberData(nameof(Drives))]
     public void DecreasesRemainingIntuitionDrive(int drive)
     {
-        var character = CharacterFactory
-            .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterIntuitionFeature(t));
+        var character = CharacterFactory.CreateCharacter("Crowley Thornwood");
 
         var feature = character.GetFeature<Character, CharacterIntuitionFeature>();
 
@@ -132,7 +121,6 @@ public class SetMaximumDriveOperationTest
         Should.Throw<DomainActionException>(() =>
             CharacterFactory
                 .CreateCharacter("Crowley Thornwood")
-                .AddFeature(t => new CharacterIntuitionFeature(t))
                 .SetMaximumDrive<CharacterIntuitionFeature>(drive)
                 .GetFeature<Character, CharacterIntuitionFeature>()
                 .DriveMax

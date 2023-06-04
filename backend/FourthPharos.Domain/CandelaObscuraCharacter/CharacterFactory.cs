@@ -12,6 +12,10 @@ public static class CharacterFactory
 
         return new Character()
             .AddFeature(t => new CharacterBasicInfoFeature(t, name))
-            .AddFeature(t => new CharacterNotesFeature(t));
+            .AddFeature(t => new CharacterNotesFeature(t))
+            .AddFeature(t => new CharacterNerveFeature(t))
+            .AddFeature(t => new CharacterCunningFeature(t))
+            .AddFeature(t => new CharacterIntuitionFeature(t))
+            .AddFeature(t => new CharacterScarsFeature(t));
     }
 }

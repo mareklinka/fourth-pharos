@@ -12,7 +12,6 @@ public class CharacterIntuitionFeatureTest
     {
         var feature = CharacterFactory
             .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterIntuitionFeature(t))
             .GetFeature<Character, CharacterIntuitionFeature>();
 
         feature.Actions.Count.ShouldBe(3);
@@ -33,7 +32,6 @@ public class CharacterIntuitionFeatureTest
     {
         var feature = CharacterFactory
             .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterIntuitionFeature(t))
             .GetFeature<Character, CharacterIntuitionFeature>();
 
         var action = feature.Actions[actionCode];
@@ -47,7 +45,6 @@ public class CharacterIntuitionFeatureTest
     {
         var feature = CharacterFactory
             .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterIntuitionFeature(t))
             .GetFeature<Character, CharacterIntuitionFeature>()
             with
         { DriveMax = drive };
@@ -57,4 +54,3 @@ public class CharacterIntuitionFeatureTest
 
     public static IEnumerable<object[]> Drives => Enumerable.Range(0, 10).Select(_ => new object[] { _ });
 }
-
