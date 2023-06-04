@@ -9,21 +9,27 @@ namespace FourthPharos.Domain.Tests.CandelaObscuraCircle.Operations;
 public class RemoveGearOperationTest
 {
     [Fact]
-    public void RemoveExistingGear() =>
-        CircleFactory
-            .CreateCirle("Test Circle")
+    public void RemoveExistingGear()
+    {
+        var circle = CircleFactory.CreateCirle("Test Circle");
+        var gear = circle
             .AddGear("Lanterna Obscura")
-            .RemoveGear("Lanterna Obscura")
+            .GetFeature<Circle, CircleGearFeature>()
+            .Gear
+            .Single();
+
+        circle
+            .RemoveGear(gear.Id)
             .GetFeature<Circle, CircleGearFeature>()
             .Gear
             .ShouldBeEmpty();
+    }
 
     [Fact]
     public void RemoveNonExistingGear() =>
-        CircleFactory
-            .CreateCirle("Test Circle")
+        CircleFactory.CreateCirle("Test Circle")
             .AddGear("Lanterna Obscura")
-            .RemoveGear("A Magickal Doodad")
+            .RemoveGear(Guid.Empty)
             .GetFeature<Circle, CircleGearFeature>()
             .Gear
             .ShouldHaveSingleItem()

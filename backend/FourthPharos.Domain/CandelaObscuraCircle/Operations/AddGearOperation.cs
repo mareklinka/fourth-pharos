@@ -1,4 +1,3 @@
-using FourthPharos.Domain.CandelaObscuraCircle;
 using FourthPharos.Domain.CandelaObscuraCircle.Features;
 using FourthPharos.Domain.CandelaObscuraCircle.Models;
 using FourthPharos.Domain.Features;
@@ -13,6 +12,6 @@ public static class AddGearOperation
 
         CircleGearValidators.Name(gearName);
 
-        return circle.UpdateFeature(feature with { Gear = feature.Gear.Add(new(gearName)) });
+        return circle.UpdateFeature(feature with { Gear = feature.Gear.Add(new(Guid.NewGuid(), gearName)) });
     }
 }

@@ -6,11 +6,11 @@ namespace FourthPharos.Domain.CandelaObscuraCircle.Operations;
 
 public static class RemoveGearOperation
 {
-    public static Circle RemoveGear(this Circle circle, string gearName)
+    public static Circle RemoveGear(this Circle circle, Guid id)
     {
         var feature = circle.GetFeature<Circle, CircleGearFeature>();
 
-        var item = feature.Gear.FirstOrDefault(_ => _.Name == gearName);
+        var item = feature.Gear.FirstOrDefault(_ => _.Id == id);
 
         return item switch
         {
