@@ -12,7 +12,7 @@ public static class AddScarOperation
 
         return character.UpdateFeature(feature with
         {
-            Scars = feature.Scars.Add(new(scarType))
+            Scars = feature.Scars.Add(new(Guid.NewGuid(), scarType, DateTime.UtcNow))
         });
     }
 }

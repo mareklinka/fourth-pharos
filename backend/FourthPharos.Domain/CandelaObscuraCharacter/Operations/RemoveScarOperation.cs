@@ -6,13 +6,14 @@ namespace FourthPharos.Domain.CandelaObscuraCharacter.Operations;
 
 public static class RemoveScarOperation
 {
-    public static Character RemoveScar(this Character character, ScarModel scar)
+    public static Character RemoveScar(this Character character, Guid id)
     {
         var feature = character.GetFeature<Character, CharacterScarsFeature>();
 
-        return character.UpdateFeature(feature with
+        return feature.Scars.SingleOrDefault(_ => _.Id == id) switch
         {
-            Scars = feature.Scars.Remove(scar)
-        });
+            ScarModel scar => character.UpdateFeature(feature with { Scars = feature.Scars.Remove(scar) }),
+            _ => throw DomainExceptions.CharacterExceptions.InvalidScar(id)
+        };
     }
 }

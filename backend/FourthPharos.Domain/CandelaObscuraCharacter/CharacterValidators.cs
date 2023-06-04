@@ -44,7 +44,7 @@ public static class CharacterValidators
     {
         if (drive is < 0 or > 3)
         {
-            throw DomainExceptions.CharacterExceptions.ActionRankOutOfRange();
+            throw DomainExceptions.CharacterExceptions.ActionRatingOutOfRange();
         }
     }
 
@@ -58,6 +58,19 @@ public static class CharacterValidators
         if (description.Length > ScarDescriptionMaxLength)
         {
             throw DomainExceptions.CharacterExceptions.ScarDescriptionTooLong(BasicInfoMaxLength);
+        }
+    }
+
+    public static void ScarActionPointTransfer(string? sourceAction, string? targetAction)
+    {
+        if (sourceAction is null && targetAction is null)
+        {
+            return;
+        }
+
+        if (sourceAction == targetAction)
+        {
+            throw DomainExceptions.CharacterExceptions.ScarSourceActionSameAsTargetAction((sourceAction ?? targetAction)!);
         }
     }
 }
