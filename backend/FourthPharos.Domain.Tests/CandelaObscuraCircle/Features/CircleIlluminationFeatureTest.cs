@@ -3,6 +3,7 @@ using FourthPharos.Domain.CandelaObscuraCircle.Features;
 using FourthPharos.Domain.CandelaObscuraCircle.Models;
 using FourthPharos.Domain.CandelaObscuraCircle.Operations;
 using FourthPharos.Domain.Features;
+using Newtonsoft.Json.Linq;
 
 namespace FourthPharos.Domain.Tests.CandelaObscuraCircle.Features;
 
@@ -32,6 +33,22 @@ public class CircleIlluminationFeatureTest
 
         feature.Illumination.ShouldBe(illuminationToAdd);
         feature.Rank.ShouldBe(1 + (illuminationToAdd / 24));
+    }
+
+    [Fact]
+    public void PersistenceTest()
+    {
+        var feature = CircleFactory
+            .CreateCirle("Test Circle")
+            .AddIllumination(10)
+            .GetFeature<Circle, CircleIlluminationFeature>();
+
+        var json = JToken.FromObject(feature.GetData()!);
+
+        var deserialized = feature.SetData(json);
+
+        feature.ShouldNotBeSameAs(deserialized);
+        feature.Illumination.ShouldBe(deserialized.Illumination);
     }
 
     public static IEnumerable<object[]> IlluminationData => Enumerable.Range(1, 100).Select(_ => new object[] { _ });

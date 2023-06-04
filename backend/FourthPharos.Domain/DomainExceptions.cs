@@ -1,4 +1,5 @@
 using FourthPharos.Domain.CandelaObscuraCircle.Models;
+using Newtonsoft.Json.Linq;
 
 namespace FourthPharos.Domain;
 
@@ -57,5 +58,11 @@ public static class DomainExceptions
         public static DomainActionException ActionRankOutOfRange() => new(nameof(ActionRankOutOfRange), "Action rank must be between 0 and 3");
 
         public static DomainActionException InvalidAction(string actionCode) => new(nameof(InvalidAction), $"Action {actionCode} does not exist", actionCode);
+    }
+
+    public static class StorageExceptions
+    {
+        public static DomainActionException InvalidFeatureDataFormat(string featureCode, int version, JToken? data) =>
+            new(nameof(InvalidFeatureDataFormat), $"Unable to deserialize feature data for feature {featureCode} version {version}: {data}");
     }
 }

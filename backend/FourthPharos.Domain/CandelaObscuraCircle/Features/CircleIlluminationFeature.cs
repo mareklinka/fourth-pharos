@@ -1,13 +1,18 @@
 using FourthPharos.Domain.CandelaObscuraCircle.Models;
 using FourthPharos.Domain.Features;
+using Newtonsoft.Json.Linq;
 
 namespace FourthPharos.Domain.CandelaObscuraCircle.Features;
 
 public sealed record CircleIlluminationFeature(Circle Target) : FeatureBase<Circle>(Target)
 {
-    public override string Code => "circle_illumination";
+    public const string FeatureCode = "circle_illumination";
 
-    public override int Version => 1;
+    public const int FeatureVersion = 1;
+
+    public override string Code => FeatureCode;
+
+    public override int Version => FeatureVersion;
 
     public int Illumination { get; init; }
 
@@ -22,4 +27,13 @@ public sealed record CircleIlluminationFeature(Circle Target) : FeatureBase<Circ
         };
 
     public int Rank => 1 + (Illumination / 24);
+
+    public override object? GetData() => Illumination;
+
+    public override CircleIlluminationFeature SetData(JToken? data) =>
+        data switch
+        {
+            JValue { Type: JTokenType.Integer } v => this with { Illumination = v.Value<int>()! },
+            _ => throw DomainExceptions.StorageExceptions.InvalidFeatureDataFormat(Code, Version, data)
+        };
 }

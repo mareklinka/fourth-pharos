@@ -10,6 +10,6 @@ public static class CharacterFactory
     {
         CharacterValidators.Name(name);
 
-        return new Character().AddFeature(t => new CharacterBasicInfoFeature(t, name));
+        return new Character(Guid.NewGuid(), Guid.Empty).AddFeature(t => new CharacterBasicInfoFeature(t, name));
     }
 }

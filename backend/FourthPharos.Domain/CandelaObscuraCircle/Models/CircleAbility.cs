@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using FourthPharos.Domain.CandelaObscuraCircle.Features;
 using FourthPharos.Domain.Features;
 
@@ -5,7 +6,7 @@ namespace FourthPharos.Domain.CandelaObscuraCircle.Models;
 
 public record CircleAbility
 {
-    private static readonly Dictionary<string, CircleAbility> _abilities = new()
+    public static readonly ImmutableDictionary<string, CircleAbility> KnownAbilities = new Dictionary<string, CircleAbility>
     {
         { "stm", new(
             "stm",
@@ -16,7 +17,7 @@ public record CircleAbility
         { "int", new("int") },
         { "rm", new("rm") },
         { "olr", new("olr") },
-    };
+    }.ToImmutableDictionary();
 
     private CircleAbility(string code, Func<Circle, Circle>? onAdded = null, Func<Circle, Circle>? onRemoved = null)
     {
@@ -25,17 +26,17 @@ public record CircleAbility
         OnRemoved = onRemoved;
     }
 
-    public static CircleAbility StaminaTraining { get; } = _abilities["stm"];
+    public static CircleAbility StaminaTraining { get; } = KnownAbilities["stm"];
 
-    public static CircleAbility NobodyLeftBehind { get; } = _abilities["nlb"];
+    public static CircleAbility NobodyLeftBehind { get; } = KnownAbilities["nlb"];
 
-    public static CircleAbility ForgedInFire { get; } = _abilities["fif"];
+    public static CircleAbility ForgedInFire { get; } = KnownAbilities["fif"];
 
-    public static CircleAbility Interdisciplinary { get; } = _abilities["int"];
+    public static CircleAbility Interdisciplinary { get; } = KnownAbilities["int"];
 
-    public static CircleAbility ResourceManagement { get; } = _abilities["rm"];
+    public static CircleAbility ResourceManagement { get; } = KnownAbilities["rm"];
 
-    public static CircleAbility OneLastRun { get; } = _abilities["olr"];
+    public static CircleAbility OneLastRun { get; } = KnownAbilities["olr"];
 
     public string Code { get; }
 
