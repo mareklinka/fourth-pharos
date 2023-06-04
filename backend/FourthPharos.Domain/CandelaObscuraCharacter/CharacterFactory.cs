@@ -16,6 +16,9 @@ public static class CharacterFactory
             .AddFeature(t => new CharacterNerveFeature(t))
             .AddFeature(t => new CharacterCunningFeature(t))
             .AddFeature(t => new CharacterIntuitionFeature(t))
-            .AddFeature(t => new CharacterScarsFeature(t));
+            .AddFeature(t => new CharacterScarsFeature(t))
+            .AddFeature(t => new CharacterBodyMarksFeature(t))
+            .AddFeature(t => new CharacterBrainMarksFeature(t))
+            .AddFeature(t => new CharacterBleedMarksFeature(t));
     }
 }
