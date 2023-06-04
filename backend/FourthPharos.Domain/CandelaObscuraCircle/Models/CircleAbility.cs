@@ -5,7 +5,7 @@ namespace FourthPharos.Domain.CandelaObscuraCircle.Models;
 
 public record CircleAbility
 {
-    private static readonly Dictionary<string, CircleAbility> _abilities = new()
+    public static readonly IReadOnlyDictionary<string, CircleAbility> Abilities = new Dictionary<string, CircleAbility>()
     {
         { "stm", new(
             "stm",
@@ -25,21 +25,23 @@ public record CircleAbility
         OnRemoved = onRemoved;
     }
 
-    public static CircleAbility StaminaTraining { get; } = _abilities["stm"];
+    public static CircleAbility StaminaTraining { get; } = Abilities["stm"];
 
-    public static CircleAbility NobodyLeftBehind { get; } = _abilities["nlb"];
+    public static CircleAbility NobodyLeftBehind { get; } = Abilities["nlb"];
 
-    public static CircleAbility ForgedInFire { get; } = _abilities["fif"];
+    public static CircleAbility ForgedInFire { get; } = Abilities["fif"];
 
-    public static CircleAbility Interdisciplinary { get; } = _abilities["int"];
+    public static CircleAbility Interdisciplinary { get; } = Abilities["int"];
 
-    public static CircleAbility ResourceManagement { get; } = _abilities["rm"];
+    public static CircleAbility ResourceManagement { get; } = Abilities["rm"];
 
-    public static CircleAbility OneLastRun { get; } = _abilities["olr"];
+    public static CircleAbility OneLastRun { get; } = Abilities["olr"];
 
     public string Code { get; }
 
     public Func<Circle, Circle>? OnAdded { get; }
 
     public Func<Circle, Circle>? OnRemoved { get; }
+
+    public int TakenAtRank { get; init; }
 }

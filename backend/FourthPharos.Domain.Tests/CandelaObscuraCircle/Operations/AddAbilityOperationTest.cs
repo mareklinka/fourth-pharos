@@ -13,12 +13,12 @@ public class AddAbilityOperationTest
     {
         var circle = CircleFactory
             .CreateCirle("Test Circle")
-            .AddAbility(CircleAbility.ForgedInFire);
+            .AddAbility(CircleAbility.ForgedInFire.Code, 1);
 
         var feature = circle.GetFeature<Circle, CircleAbilitiesFeature>();
 
         feature.Abilities.ShouldHaveSingleItem();
-        feature.Abilities.ShouldContain(CircleAbility.ForgedInFire);
+        feature.Abilities.ShouldContain(CircleAbility.ForgedInFire with { TakenAtRank = 1 });
     }
 
     [Fact]
@@ -26,13 +26,23 @@ public class AddAbilityOperationTest
     {
         var circle = CircleFactory
             .CreateCirle("Test Circle")
-            .AddAbility(CircleAbility.StaminaTraining);
+            .AddAbility(CircleAbility.StaminaTraining.Code, 1);
 
         var feature = circle.GetFeature<Circle, CircleAbilitiesFeature>();
 
         feature.Abilities.ShouldHaveSingleItem();
-        feature.Abilities.ShouldContain(CircleAbility.StaminaTraining);
+        feature.Abilities.ShouldContain(CircleAbility.StaminaTraining with { TakenAtRank = 1 });
         circle.GetFeature<Circle, StaminaTrainingFeature>().StaminaDice.ShouldBe(3);
+    }
+
+    [Fact]
+    public void AddInvalidAbilityFails()
+    {
+        Should.Throw<DomainActionException>(() => CircleFactory
+            .CreateCirle("Test Circle")
+            .AddAbility("ab1", 1))
+        .Code
+        .ShouldBe(nameof(DomainExceptions.CircleExceptions.InvalidAbility));
     }
 
     [Fact]
@@ -40,8 +50,9 @@ public class AddAbilityOperationTest
     {
         Should.Throw<DomainActionException>(() => CircleFactory
             .CreateCirle("Test Circle")
-            .AddAbility(CircleAbility.ForgedInFire)
-            .AddAbility(CircleAbility.ForgedInFire))
+            .AddIllumination(24)
+            .AddAbility(CircleAbility.ForgedInFire.Code, 1)
+            .AddAbility(CircleAbility.ForgedInFire.Code, 2))
         .Code
         .ShouldBe(nameof(DomainExceptions.CircleExceptions.AbilityAlreadyExists));
     }
@@ -51,9 +62,31 @@ public class AddAbilityOperationTest
     {
         Should.Throw<DomainActionException>(() => CircleFactory
             .CreateCirle("Test Circle")
-            .AddAbility(CircleAbility.ForgedInFire)
-            .AddAbility(CircleAbility.Interdisciplinary))
+            .AddAbility(CircleAbility.ForgedInFire.Code, 1)
+            .AddAbility(CircleAbility.Interdisciplinary.Code, 1))
         .Code
         .ShouldBe(nameof(DomainExceptions.CircleExceptions.AbilityLimitReached));
+    }
+
+    [Fact]
+    public void AddAbilityOfExistingRankFails()
+    {
+        Should.Throw<DomainActionException>(() => CircleFactory
+            .CreateCirle("Test Circle")
+            .AddIllumination(24)
+            .AddAbility(CircleAbility.ForgedInFire.Code, 1)
+            .AddAbility(CircleAbility.StaminaTraining.Code, 1))
+        .Code
+        .ShouldBe(nameof(DomainExceptions.CircleExceptions.AbilityForRankExists));
+    }
+
+    [Fact]
+    public void AddAbilityOverCurrentRankFails()
+    {
+        Should.Throw<DomainActionException>(() => CircleFactory
+            .CreateCirle("Test Circle")
+            .AddAbility(CircleAbility.ForgedInFire.Code, 2))
+        .Code
+        .ShouldBe(nameof(DomainExceptions.CircleExceptions.InsufficientRank));
     }
 }

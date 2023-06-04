@@ -6,22 +6,52 @@ namespace FourthPharos.Domain.CandelaObscuraCircle.Operations;
 
 public static class AddAbilityOperation
 {
-    public static Circle AddAbility(this Circle circle, CircleAbility ability)
+    public static Circle AddAbility(this Circle circle, string abilityCode, int takenAtRank)
     {
         var feature = circle.GetFeature<Circle, CircleAbilitiesFeature>();
+        var illuminationFeature = circle.GetFeature<Circle, CircleIlluminationFeature>();
 
-        if (feature.Abilities.Contains(ability))
+        var ability = Validate(abilityCode, takenAtRank, feature, illuminationFeature);
+
+        circle = ability.OnAdded?.Invoke(circle) ?? circle;
+
+        return circle.UpdateFeature(feature with
         {
-            throw DomainExceptions.CircleExceptions.AbilityAlreadyExists(ability.Code);
-        }
+            Abilities = feature.Abilities.Add(ability with { TakenAtRank = takenAtRank })
+        });
+    }
 
-        if (feature.AvailableAbilities == 0)
+    private static CircleAbility Validate(
+        string abilityCode,
+        int takenAtRank,
+        CircleAbilitiesFeature abilitiesFeature,
+        CircleIlluminationFeature illuminationFeature)
+    {
+        if (abilitiesFeature.AvailableAbilities == 0)
         {
             throw DomainExceptions.CircleExceptions.AbilityLimitReached();
         }
 
-        circle = ability.OnAdded?.Invoke(circle) ?? circle;
+        if (abilitiesFeature.Abilities.Any(_ => _.Code == abilityCode))
+        {
+            throw DomainExceptions.CircleExceptions.AbilityAlreadyExists(abilityCode);
+        }
 
-        return circle.UpdateFeature(feature with { Abilities = feature.Abilities.Add(ability) });
+        if (abilitiesFeature.Abilities.Any(_ => _.TakenAtRank == takenAtRank))
+        {
+            throw DomainExceptions.CircleExceptions.AbilityForRankExists(takenAtRank);
+        }
+
+        if (illuminationFeature.Rank < takenAtRank)
+        {
+            throw DomainExceptions.CircleExceptions.InsufficientRank(takenAtRank);
+        }
+
+        if (!CircleAbility.Abilities.TryGetValue(abilityCode, out var ability))
+        {
+            throw DomainExceptions.CircleExceptions.InvalidAbility(abilityCode);
+        }
+
+        return ability;
     }
 }

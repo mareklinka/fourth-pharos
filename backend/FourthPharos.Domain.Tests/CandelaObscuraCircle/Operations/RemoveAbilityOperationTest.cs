@@ -22,7 +22,7 @@ public class RemoveAbilityOperationTest
     public void RemoveNonExistingAbilityNoopTest() =>
         CircleFactory
             .CreateCirle("Test Circle")
-            .AddAbility(CircleAbility.ForgedInFire)
+            .AddAbility(CircleAbility.ForgedInFire.Code, 1)
             .RemoveAbility(CircleAbility.StaminaTraining)
             .GetFeature<Circle, CircleAbilitiesFeature>()
             .Abilities
@@ -34,7 +34,7 @@ public class RemoveAbilityOperationTest
     public void StaminaTrainingUnhooksFeatureTest() =>
         CircleFactory
             .CreateCirle("Test Circle")
-            .AddAbility(CircleAbility.StaminaTraining)
+            .AddAbility(CircleAbility.StaminaTraining.Code, 1)
             .RemoveAbility(CircleAbility.StaminaTraining)
             .TryGetFeature<Circle, StaminaTrainingFeature>().ShouldBeNull();
 }

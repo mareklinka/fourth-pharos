@@ -12,7 +12,7 @@ public class ConsumeStaminaDiceOperationTest
     public void ConsumeStaminaDie() =>
         CircleFactory
             .CreateCirle("Test Circle")
-            .AddAbility(CircleAbility.StaminaTraining)
+            .AddAbility(CircleAbility.StaminaTraining.Code, 1)
             .ConsumeStaminaDice()
             .GetFeature<Circle, StaminaTrainingFeature>()
             .StaminaDice
@@ -23,7 +23,7 @@ public class ConsumeStaminaDiceOperationTest
         Should.Throw<DomainActionException>(() =>
             CircleFactory
                 .CreateCirle("Test Circle")
-                .AddAbility(CircleAbility.StaminaTraining)
+                .AddAbility(CircleAbility.StaminaTraining.Code, 1)
                 .ConsumeStaminaDice()
                 .ConsumeStaminaDice()
                 .ConsumeStaminaDice()

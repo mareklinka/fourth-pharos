@@ -25,6 +25,12 @@ public static class DomainExceptions
         public static DomainActionException StaminaDiceFull() => new(nameof(StaminaDiceFull), "The circle's stamina dice are at maximum");
 
         public static DomainActionException IlluminationBelowZero() => new(nameof(IlluminationBelowZero), "Illumination cannot be less than 0");
+
+        public static DomainActionException InvalidAbility(string abilityCode) => new(nameof(InvalidAbility), $"Ability {abilityCode} does not exist", abilityCode);
+
+        public static DomainActionException AbilityForRankExists(int rank) => new(nameof(AbilityForRankExists), $"Ability for circle rank {rank} is already taken", rank);
+
+        public static DomainActionException InsufficientRank(int takenAtRank) => new(nameof(InsufficientRank), $"Circle has not reached rank {takenAtRank}", takenAtRank);
     }
 
     public static class CircleGearExceptions
