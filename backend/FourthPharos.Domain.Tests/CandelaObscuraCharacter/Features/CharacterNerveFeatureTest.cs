@@ -12,7 +12,6 @@ public class CharacterNerveFeatureTest
     {
         var feature = CharacterFactory
             .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterNerveFeature(t))
             .GetFeature<Character, CharacterNerveFeature>();
 
         feature.Actions.Count.ShouldBe(3);
@@ -33,7 +32,6 @@ public class CharacterNerveFeatureTest
     {
         var feature = CharacterFactory
             .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterNerveFeature(t))
             .GetFeature<Character, CharacterNerveFeature>();
 
         var action = feature.Actions[actionCode];
@@ -47,7 +45,6 @@ public class CharacterNerveFeatureTest
     {
         var feature = CharacterFactory
             .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterNerveFeature(t))
             .GetFeature<Character, CharacterNerveFeature>()
             with
         { DriveMax = drive };

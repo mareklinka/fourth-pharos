@@ -44,6 +44,9 @@ public static class DomainExceptions
     {
         public static DomainActionException FeatureNotAttached(string featureName) =>
             new(nameof(FeatureNotAttached), $"The feature {featureName} is not available");
+
+        public static DomainActionException FeatureAlreadyAttached(string featureName) =>
+            new(nameof(FeatureAlreadyAttached), $"The feature {featureName} is already attached");
     }
 
     public static class CharacterExceptions
@@ -53,6 +56,8 @@ public static class DomainExceptions
         public static DomainActionException CharacterNameTooLong(int length) => new(nameof(CharacterNameTooLong), $"The character name must not exceed {length} characters", length);
 
         public static DomainActionException BasicInfoTooLong(int length) => new(nameof(BasicInfoTooLong), $"The character name must not exceed {length} characters", length);
+
+        public static DomainActionException ScarDescriptionTooLong(int length) => new(nameof(ScarDescriptionTooLong), $"The scar description must not exceed {length} characters", length);
 
         public static DomainActionException InsufficientDrive() => new(nameof(InsufficientDrive), "The character doesn't have enough drive");
 

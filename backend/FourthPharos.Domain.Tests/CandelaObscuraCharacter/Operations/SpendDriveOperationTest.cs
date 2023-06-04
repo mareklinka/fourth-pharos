@@ -12,9 +12,7 @@ public class SpendDriveOperationTest
     [MemberData(nameof(Drives))]
     public void SpendNerveTest(int drive)
     {
-        var character = CharacterFactory
-            .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterNerveFeature(t));
+        var character = CharacterFactory.CreateCharacter("Crowley Thornwood");
 
         var feature = character.GetFeature<Character, CharacterNerveFeature>();
 
@@ -32,7 +30,6 @@ public class SpendDriveOperationTest
         Should.Throw<DomainActionException>(() =>
             CharacterFactory
                 .CreateCharacter("Crowley Thornwood")
-                .AddFeature(t => new CharacterNerveFeature(t))
                 .SpendDrive<CharacterNerveFeature>())
         .Code
         .ShouldBe(nameof(DomainExceptions.CharacterExceptions.InsufficientDrive));
@@ -42,9 +39,7 @@ public class SpendDriveOperationTest
     [MemberData(nameof(Drives))]
     public void SpendCunningTest(int drive)
     {
-        var character = CharacterFactory
-            .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterCunningFeature(t));
+        var character = CharacterFactory.CreateCharacter("Crowley Thornwood");
 
         var feature = character.GetFeature<Character, CharacterCunningFeature>();
 
@@ -62,7 +57,6 @@ public class SpendDriveOperationTest
         Should.Throw<DomainActionException>(() =>
             CharacterFactory
                 .CreateCharacter("Crowley Thornwood")
-                .AddFeature(t => new CharacterCunningFeature(t))
                 .SpendDrive<CharacterCunningFeature>())
         .Code
         .ShouldBe(nameof(DomainExceptions.CharacterExceptions.InsufficientDrive));
@@ -72,9 +66,7 @@ public class SpendDriveOperationTest
     [MemberData(nameof(Drives))]
     public void SpendIntuitionTest(int drive)
     {
-        var character = CharacterFactory
-            .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterIntuitionFeature(t));
+        var character = CharacterFactory.CreateCharacter("Crowley Thornwood");
 
         var feature = character.GetFeature<Character, CharacterIntuitionFeature>();
 
@@ -92,7 +84,6 @@ public class SpendDriveOperationTest
         Should.Throw<DomainActionException>(() =>
             CharacterFactory
                 .CreateCharacter("Crowley Thornwood")
-                .AddFeature(t => new CharacterIntuitionFeature(t))
                 .SpendDrive<CharacterIntuitionFeature>())
         .Code
         .ShouldBe(nameof(DomainExceptions.CharacterExceptions.InsufficientDrive));

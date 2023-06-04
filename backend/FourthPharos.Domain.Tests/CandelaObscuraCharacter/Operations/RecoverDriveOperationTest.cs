@@ -12,9 +12,7 @@ public class RecoverDriveOperationTest
     [MemberData(nameof(Drives))]
     public void RecoverNerveTest(int drive)
     {
-        var character = CharacterFactory
-            .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterNerveFeature(t));
+        var character = CharacterFactory.CreateCharacter("Crowley Thornwood");
 
         var feature = character.GetFeature<Character, CharacterNerveFeature>();
 
@@ -32,7 +30,6 @@ public class RecoverDriveOperationTest
         Should.Throw<DomainActionException>(() =>
             CharacterFactory
                 .CreateCharacter("Crowley Thornwood")
-                .AddFeature(t => new CharacterNerveFeature(t))
                 .RecoverDrive<CharacterNerveFeature>())
         .Code
         .ShouldBe(nameof(DomainExceptions.CharacterExceptions.MaximumDriveReached));
@@ -42,9 +39,7 @@ public class RecoverDriveOperationTest
     [MemberData(nameof(Drives))]
     public void RecoverCunningTest(int drive)
     {
-        var character = CharacterFactory
-            .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterCunningFeature(t));
+        var character = CharacterFactory.CreateCharacter("Crowley Thornwood");
 
         var feature = character.GetFeature<Character, CharacterCunningFeature>();
 
@@ -62,7 +57,6 @@ public class RecoverDriveOperationTest
         Should.Throw<DomainActionException>(() =>
             CharacterFactory
                 .CreateCharacter("Crowley Thornwood")
-                .AddFeature(t => new CharacterCunningFeature(t))
                 .RecoverDrive<CharacterCunningFeature>())
         .Code
         .ShouldBe(nameof(DomainExceptions.CharacterExceptions.MaximumDriveReached));
@@ -72,9 +66,7 @@ public class RecoverDriveOperationTest
     [MemberData(nameof(Drives))]
     public void RecoverIntuitionTest(int drive)
     {
-        var character = CharacterFactory
-            .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterIntuitionFeature(t));
+        var character = CharacterFactory.CreateCharacter("Crowley Thornwood");
 
         var feature = character.GetFeature<Character, CharacterIntuitionFeature>();
 
@@ -92,7 +84,6 @@ public class RecoverDriveOperationTest
         Should.Throw<DomainActionException>(() =>
             CharacterFactory
                 .CreateCharacter("Crowley Thornwood")
-                .AddFeature(t => new CharacterIntuitionFeature(t))
                 .RecoverDrive<CharacterIntuitionFeature>())
         .Code
         .ShouldBe(nameof(DomainExceptions.CharacterExceptions.MaximumDriveReached));

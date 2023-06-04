@@ -17,9 +17,7 @@ public class SetActionGildedOperationTest
     [InlineData(CharacterNerveFeature.ControlActionCode, false)]
     public void SetsNerveActionGilded(string actionCode, bool isGilded)
     {
-        var character = CharacterFactory
-            .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterNerveFeature(t));
+        var character = CharacterFactory.CreateCharacter("Crowley Thornwood");
 
         var feature = character.GetFeature<Character, CharacterNerveFeature>();
         var action = feature.Actions[actionCode];
@@ -42,9 +40,7 @@ public class SetActionGildedOperationTest
     [InlineData(CharacterCunningFeature.HideActionCode, false)]
     public void SetsCunningActionGilded(string actionCode, bool isGilded)
     {
-        var character = CharacterFactory
-            .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterCunningFeature(t));
+        var character = CharacterFactory.CreateCharacter("Crowley Thornwood");
 
         var feature = character.GetFeature<Character, CharacterCunningFeature>();
         var action = feature.Actions[actionCode];
@@ -67,9 +63,7 @@ public class SetActionGildedOperationTest
     [InlineData(CharacterIntuitionFeature.SenseActionCode, false)]
     public void SetsIntuitionActionGilded(string actionCode, bool isGilded)
     {
-        var character = CharacterFactory
-            .CreateCharacter("Crowley Thornwood")
-            .AddFeature(t => new CharacterIntuitionFeature(t));
+        var character = CharacterFactory.CreateCharacter("Crowley Thornwood");
 
         var feature = character.GetFeature<Character, CharacterIntuitionFeature>();
         var action = feature.Actions[actionCode];
