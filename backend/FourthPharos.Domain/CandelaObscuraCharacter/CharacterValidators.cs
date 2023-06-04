@@ -73,4 +73,17 @@ public static class CharacterValidators
             throw DomainExceptions.CharacterExceptions.ScarSourceActionSameAsTargetAction((sourceAction ?? targetAction)!);
         }
     }
+
+    public static void ScarDescription(string? description)
+    {
+        if (description is null)
+        {
+            return;
+        }
+
+        if (description.Length > ScarDescriptionMaxLength)
+        {
+            throw DomainExceptions.CharacterExceptions.ScarDescriptionTooLong(BasicInfoMaxLength);
+        }
+    }
 }
