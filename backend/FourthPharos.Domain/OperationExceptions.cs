@@ -78,5 +78,7 @@ public static class DomainExceptions
         public static DomainActionException InsufficientActionRating(string actionCode) => new(nameof(InsufficientActionRating), $"Insufficient rating for action {actionCode}");
 
         public static DomainActionException ActionRatingFull(string actionCode) => new(nameof(ActionRatingFull), $"Insufficient rating for action {actionCode}");
+
+        public static DomainActionException InsufficientMarks() => new(nameof(InsufficientMarks), "The character doesn't have enough marks");
     }
 }
