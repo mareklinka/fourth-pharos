@@ -22,7 +22,7 @@ public class RemoveScarOperationTest
             .Single();
 
         character
-            .RemoveScar(scar)
+            .RemoveScar(scar.Id)
             .GetFeature<Character, CharacterScarsFeature>()
             .Scars
             .ShouldBeEmpty();

@@ -65,10 +65,18 @@ public static class DomainExceptions
 
         public static DomainActionException MaximumDriveOutOfRange() => new(nameof(MaximumDriveOutOfRange), "Maximum drive must be between 0 and 9");
 
-        public static DomainActionException ActionRankOutOfRange() => new(nameof(ActionRankOutOfRange), "Action rank must be between 0 and 3");
+        public static DomainActionException ActionRatingOutOfRange() => new(nameof(ActionRatingOutOfRange), "Action rank must be between 0 and 3");
 
         public static DomainActionException InvalidAction(string actionCode) => new(nameof(InvalidAction), $"Action {actionCode} does not exist", actionCode);
 
         public static DomainActionException InvalidNote(Guid id) => new(nameof(InvalidNote), $"The note {id} was does not exist", id);
+
+        public static DomainActionException ScarSourceActionSameAsTargetAction(string actionCode) => new(nameof(ScarSourceActionSameAsTargetAction), "A scar's source action must be different from its target action", actionCode);
+
+        public static DomainActionException InvalidScar(Guid id) => new(nameof(InvalidScar), $"Scar {id} does not exist", id);
+
+        public static DomainActionException InsufficientActionRating(string actionCode) => new(nameof(InsufficientActionRating), $"Insufficient rating for action {actionCode}");
+
+        public static DomainActionException ActionRatingFull(string actionCode) => new(nameof(ActionRatingFull), $"Insufficient rating for action {actionCode}");
     }
 }
