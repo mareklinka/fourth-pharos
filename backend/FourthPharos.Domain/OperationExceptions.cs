@@ -57,5 +57,7 @@ public static class DomainExceptions
         public static DomainActionException ActionRankOutOfRange() => new(nameof(ActionRankOutOfRange), "Action rank must be between 0 and 3");
 
         public static DomainActionException InvalidAction(string actionCode) => new(nameof(InvalidAction), $"Action {actionCode} does not exist", actionCode);
+
+        public static DomainActionException InvalidNote(Guid id) => new(nameof(InvalidNote), $"The note {id} was does not exist", id);
     }
 }
