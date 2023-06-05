@@ -17,7 +17,10 @@ public static class RemoveAbilityOperation
             return circle;
         }
 
-        circle = ability.OnRemoved?.Invoke(circle) ?? circle;
+        if (ability.Code == CircleAbility.StaminaTraining.Code)
+        {
+            circle = circle.RemoveFeature<Circle, StaminaTrainingFeature>();
+        }
 
         return circle.UpdateFeature(feature with { Abilities = feature.Abilities.Remove(ability) });
     }

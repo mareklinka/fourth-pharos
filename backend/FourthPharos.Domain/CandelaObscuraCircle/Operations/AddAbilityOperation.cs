@@ -13,7 +13,10 @@ public static class AddAbilityOperation
 
         var ability = Validate(abilityCode, takenAtRank, feature, illuminationFeature);
 
-        circle = ability.OnAdded?.Invoke(circle) ?? circle;
+        if (ability.Code == CircleAbility.StaminaTraining.Code)
+        {
+            circle = circle.AddFeature(t => new StaminaTrainingFeature(t));
+        }
 
         return circle.UpdateFeature(feature with
         {

@@ -1,16 +1,10 @@
-using FourthPharos.Domain.CandelaObscuraCircle.Features;
-using FourthPharos.Domain.Features;
-
 namespace FourthPharos.Domain.CandelaObscuraCircle.Models;
 
 public record CircleAbility
 {
     public static readonly IReadOnlyDictionary<string, CircleAbility> Abilities = new Dictionary<string, CircleAbility>()
     {
-        { "stm", new(
-            "stm",
-            t => t.AddFeature(t => new StaminaTrainingFeature(t)),
-            t => t.RemoveFeature<Circle, StaminaTrainingFeature>()) },
+        { "stm", new("stm") },
         { "nlb", new("nlb") },
         { "fif", new("fif") },
         { "int", new("int") },
@@ -18,12 +12,7 @@ public record CircleAbility
         { "olr", new("olr") },
     };
 
-    private CircleAbility(string code, Func<Circle, Circle>? onAdded = null, Func<Circle, Circle>? onRemoved = null)
-    {
-        Code = code;
-        OnAdded = onAdded;
-        OnRemoved = onRemoved;
-    }
+    private CircleAbility(string code) => Code = code;
 
     public static CircleAbility StaminaTraining { get; } = Abilities["stm"];
 
@@ -38,10 +27,6 @@ public record CircleAbility
     public static CircleAbility OneLastRun { get; } = Abilities["olr"];
 
     public string Code { get; }
-
-    public Func<Circle, Circle>? OnAdded { get; }
-
-    public Func<Circle, Circle>? OnRemoved { get; }
 
     public int TakenAtRank { get; init; }
 }
