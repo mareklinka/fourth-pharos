@@ -1,7 +1,8 @@
-﻿// See https://aka.ms/new-console-template for more information
-using FourthPharos.Domain.CandelaObscuraCircle;
+﻿using FourthPharos.Domain.CandelaObscuraCircle;
+using FourthPharos.Domain.CandelaObscuraCircle.Features;
 using FourthPharos.Domain.CandelaObscuraCircle.Models;
 using FourthPharos.Domain.CandelaObscuraCircle.Operations;
+using FourthPharos.Domain.Features;
 using FourthPharos.Persistence;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +30,18 @@ var circleContainer = client.GetContainer("fourth-pharos", "circles");
 
 var writeModel = CircleMapper.ToStorageModel(c);
 await circleContainer.CreateItemAsync(writeModel);
+
+c.AddGear("Book of Horrors");
+
+var partialUpdate = await circleContainer.PatchItemAsync<object>(
+    c.Id.ToString("D"),
+    new(c.OwnerId.ToString("D")),
+    new[] { PatchOperation.Replace($"/features/{CircleGearFeature.FeatureCode}-{CircleGearFeature.FeatureVersion}", c.GetFeature<CircleGearFeature>().GetFeatureData()) });
+
+Console.WriteLine($"Partial update cost: {partialUpdate.RequestCharge}");
+
+var fullUpdate = await circleContainer.ReplaceItemAsync(CircleMapper.ToStorageModel(c), c.Id.ToString("D"), new(c.OwnerId.ToString("D")));
+Console.WriteLine($"Full update cost: {fullUpdate.RequestCharge}");
 
 var readResult = await circleContainer.ReadItemAsync<CircleStorageReadModel>(c.Id.ToString("D"), new(c.OwnerId.ToString("D")));
 var readModel = CircleMapper.FromStorageModel(readResult.Resource);

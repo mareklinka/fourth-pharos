@@ -1,4 +1,5 @@
-﻿using FourthPharos.Domain.CandelaObscuraCharacter.Features;
+﻿using System.Globalization;
+using FourthPharos.Domain.CandelaObscuraCharacter.Features;
 using FourthPharos.Domain.CandelaObscuraCircle.Features;
 using FourthPharos.Domain.CandelaObscuraCircle.Models;
 using FourthPharos.Domain.Features;
@@ -15,10 +16,7 @@ public static class CircleMapper
                 _.Id.ToString("D"),
                 _.OwnerId.ToString("D"),
                 _.GetFeature<CharacterBasicInfoFeature>().Name)).ToArray(),
-            circle.Features.Select(_ => new FeatureStorageWriteModel(
-                _.Code,
-                _.Version,
-                _.GetFeatureData())).ToArray());
+            circle.Features.ToDictionary(_ => $"{_.Code}-{_.Version}", _ => _.GetFeatureData()));
 
     public static Circle FromStorageModel(CircleStorageReadModel circleModel)
     {
@@ -26,7 +24,9 @@ public static class CircleMapper
 
         foreach (var fm in circleModel.Features)
         {
-            FeatureBase<Circle> f = (fm.FeatureCode, fm.Version) switch
+            var split = fm.Key.Split("-");
+
+            FeatureBase<Circle> f = (split[0], int.Parse(split[1], CultureInfo.InvariantCulture)) switch
             {
                 (CircleNameFeature.FeatureCode, CircleNameFeature.FeatureVersion) => new CircleNameFeature(c),
                 (CircleAbilitiesFeature.FeatureCode, CircleAbilitiesFeature.FeatureVersion) => new CircleAbilitiesFeature(c),
@@ -38,7 +38,7 @@ public static class CircleMapper
                 _ => throw new InvalidOperationException("Unknown feature encountered")
             };
 
-            c.Features = c.Features.Add(f.SetFeatureData(fm.Data));
+            c.Features = c.Features.Add(f.SetFeatureData(fm.Value));
         }
 
         return c;
