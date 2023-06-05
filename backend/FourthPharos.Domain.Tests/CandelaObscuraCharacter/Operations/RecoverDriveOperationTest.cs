@@ -1,6 +1,5 @@
 using FourthPharos.Domain.CandelaObscuraCharacter;
 using FourthPharos.Domain.CandelaObscuraCharacter.Features;
-using FourthPharos.Domain.CandelaObscuraCharacter.Models;
 using FourthPharos.Domain.CandelaObscuraCharacter.Operations;
 using FourthPharos.Domain.Features;
 
@@ -16,12 +15,12 @@ public class RecoverDriveOperationTest
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterNerveFeature(t));
 
-        var feature = character.GetFeature<Character, CharacterNerveFeature>();
+        var feature = character.GetFeature<CharacterNerveFeature>();
 
         character
             .UpdateFeature(feature with { Drive = drive, DriveMax = 9 })
             .RecoverDrive<CharacterNerveFeature>()
-            .GetFeature<Character, CharacterNerveFeature>()
+            .GetFeature<CharacterNerveFeature>()
             .Drive
             .ShouldBe(drive + 1);
     }
@@ -46,12 +45,12 @@ public class RecoverDriveOperationTest
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterCunningFeature(t));
 
-        var feature = character.GetFeature<Character, CharacterCunningFeature>();
+        var feature = character.GetFeature<CharacterCunningFeature>();
 
         character
             .UpdateFeature(feature with { Drive = drive, DriveMax = 9 })
             .RecoverDrive<CharacterCunningFeature>()
-            .GetFeature<Character, CharacterCunningFeature>()
+            .GetFeature<CharacterCunningFeature>()
             .Drive
             .ShouldBe(drive + 1);
     }
@@ -76,12 +75,12 @@ public class RecoverDriveOperationTest
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterIntuitionFeature(t));
 
-        var feature = character.GetFeature<Character, CharacterIntuitionFeature>();
+        var feature = character.GetFeature<CharacterIntuitionFeature>();
 
         character
             .UpdateFeature(feature with { Drive = drive, DriveMax = 9 })
             .RecoverDrive<CharacterIntuitionFeature>()
-            .GetFeature<Character, CharacterIntuitionFeature>()
+            .GetFeature<CharacterIntuitionFeature>()
             .Drive
             .ShouldBe(drive + 1);
     }

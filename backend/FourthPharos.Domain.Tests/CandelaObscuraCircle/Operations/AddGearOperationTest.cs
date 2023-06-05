@@ -13,7 +13,7 @@ public class AddGearOperationTest
         CircleFactory
             .CreateCirle("Test Circle")
             .AddGear("Lanterna Obscura")
-            .GetFeature<Circle, CircleGearFeature>()
+            .GetFeature<CircleGearFeature>()
             .Gear
             .ShouldHaveSingleItem()
             .Name

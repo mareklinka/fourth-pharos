@@ -21,7 +21,7 @@ public class UpdateBasicInfoOperationOperationTest
                 Question = "Where does the music come from?",
                 Style = "Alice in Wonderland"
             })
-            .GetFeature<Character, CharacterBasicInfoFeature>();
+            .GetFeature<CharacterBasicInfoFeature>();
 
         feature.Name.ShouldBe("Carver Steelspike");
         feature.Pronouns.ShouldBe("He/Him");

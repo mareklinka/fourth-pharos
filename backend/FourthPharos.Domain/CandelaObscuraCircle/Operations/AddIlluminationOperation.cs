@@ -8,7 +8,7 @@ public static class AddIlluminationOperation
 {
     public static Circle AddIllumination(this Circle circle, int illumination)
     {
-        var feature = circle.GetFeature<Circle, CircleIlluminationFeature>();
+        var feature = circle.GetFeature<CircleIlluminationFeature>();
 
         if (feature.Illumination + illumination < 0)
         {

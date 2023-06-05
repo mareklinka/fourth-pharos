@@ -14,7 +14,7 @@ public class RemoveGearOperationTest
             .CreateCirle("Test Circle")
             .AddGear("Lanterna Obscura")
             .RemoveGear("Lanterna Obscura")
-            .GetFeature<Circle, CircleGearFeature>()
+            .GetFeature<CircleGearFeature>()
             .Gear
             .ShouldBeEmpty();
 
@@ -24,7 +24,7 @@ public class RemoveGearOperationTest
             .CreateCirle("Test Circle")
             .AddGear("Lanterna Obscura")
             .RemoveGear("A Magickal Doodad")
-            .GetFeature<Circle, CircleGearFeature>()
+            .GetFeature<CircleGearFeature>()
             .Gear
             .ShouldHaveSingleItem()
             .Name

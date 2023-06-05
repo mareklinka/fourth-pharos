@@ -8,7 +8,7 @@ public static class RemoveGearOperation
 {
     public static Circle RemoveGear(this Circle circle, string gearName)
     {
-        var feature = circle.GetFeature<Circle, CircleGearFeature>();
+        var feature = circle.GetFeature<CircleGearFeature>();
 
         var item = feature.Gear.FirstOrDefault(_ => _.Name == gearName);
 

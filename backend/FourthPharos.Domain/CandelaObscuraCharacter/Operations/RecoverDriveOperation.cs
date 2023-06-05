@@ -8,7 +8,7 @@ public static class RecoverDriveOperation
 {
     public static Character RecoverDrive<TFeature>(this Character character) where TFeature : CharacterDriveFeatureBase
     {
-        var feature = character.GetFeature<Character, TFeature>();
+        var feature = character.GetFeature<TFeature>();
 
         return feature.Drive >= feature.DriveMax
             ? throw DomainExceptions.CharacterExceptions.MaximumDriveReached()

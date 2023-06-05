@@ -8,7 +8,7 @@ public static class RestoreResourceOperation
 {
     public static Circle RestoreResource(this Circle circle, CircleResource resource)
     {
-        var feature = circle.GetFeature<Circle, CircleResourcesFeature>();
+        var feature = circle.GetFeature<CircleResourcesFeature>();
 
         var current = feature.Resources[resource];
 

@@ -15,7 +15,7 @@ public class AddIlluminationOperationTest
         CircleFactory
             .CreateCirle("Test Circle")
             .AddIllumination(illumination)
-            .GetFeature<Circle, CircleIlluminationFeature>()
+            .GetFeature<CircleIlluminationFeature>()
             .Illumination
             .ShouldBe(illumination);
     }

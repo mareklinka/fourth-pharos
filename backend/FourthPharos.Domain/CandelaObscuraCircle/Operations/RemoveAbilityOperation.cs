@@ -8,7 +8,7 @@ public static class RemoveAbilityOperation
 {
     public static Circle RemoveAbility(this Circle circle, CircleAbility ability)
     {
-        var feature = circle.GetFeature<Circle, CircleAbilitiesFeature>();
+        var feature = circle.GetFeature<CircleAbilitiesFeature>();
 
         circle = ability.OnRemoved?.Invoke(circle) ?? circle;
 

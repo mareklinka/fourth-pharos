@@ -8,7 +8,7 @@ public static class SpendDriveOperation
 {
     public static Character SpendDrive<TFeature>(this Character character) where TFeature : CharacterDriveFeatureBase
     {
-        var feature = character.GetFeature<Character, TFeature>();
+        var feature = character.GetFeature<TFeature>();
 
         return feature.Drive switch
         {

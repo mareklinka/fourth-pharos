@@ -8,7 +8,7 @@ public static class AddAbilityOperation
 {
     public static Circle AddAbility(this Circle circle, CircleAbility ability)
     {
-        var feature = circle.GetFeature<Circle, CircleAbilitiesFeature>();
+        var feature = circle.GetFeature<CircleAbilitiesFeature>();
 
         if (feature.Abilities.Contains(ability))
         {

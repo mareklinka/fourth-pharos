@@ -1,4 +1,3 @@
-using FourthPharos.Domain.CandelaObscuraCircle;
 using FourthPharos.Domain.CandelaObscuraCircle.Features;
 using FourthPharos.Domain.CandelaObscuraCircle.Models;
 using FourthPharos.Domain.Features;
@@ -9,7 +8,7 @@ public static class AddGearOperation
 {
     public static Circle AddGear(this Circle circle, string gearName)
     {
-        var feature = circle.GetFeature<Circle, CircleGearFeature>();
+        var feature = circle.GetFeature<CircleGearFeature>();
 
         CircleGearValidators.Name(gearName);
 

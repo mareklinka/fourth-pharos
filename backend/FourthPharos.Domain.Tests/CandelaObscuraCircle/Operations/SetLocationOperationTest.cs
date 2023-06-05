@@ -13,7 +13,7 @@ public class SetLocationOperationTest
         CircleFactory
             .CreateCirle("Test Circle")
             .SetName("New Name")
-            .GetFeature<Circle, CircleNameFeature>()
+            .GetFeature<CircleNameFeature>()
             .Name
             .ShouldBe("New Name");
 

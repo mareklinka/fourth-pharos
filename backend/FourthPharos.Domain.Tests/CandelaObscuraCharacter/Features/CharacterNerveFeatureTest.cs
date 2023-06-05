@@ -1,6 +1,5 @@
 using FourthPharos.Domain.CandelaObscuraCharacter;
 using FourthPharos.Domain.CandelaObscuraCharacter.Features;
-using FourthPharos.Domain.CandelaObscuraCharacter.Models;
 using FourthPharos.Domain.Features;
 
 namespace FourthPharos.Domain.Tests.CandelaObscuraCharacter.Features;
@@ -13,7 +12,7 @@ public class CharacterNerveFeatureTest
         var feature = CharacterFactory
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterNerveFeature(t))
-            .GetFeature<Character, CharacterNerveFeature>();
+            .GetFeature<CharacterNerveFeature>();
 
         feature.Actions.Count.ShouldBe(3);
         feature.Actions.ShouldContainKey(CharacterNerveFeature.MoveActionCode);
@@ -34,7 +33,7 @@ public class CharacterNerveFeatureTest
         var feature = CharacterFactory
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterNerveFeature(t))
-            .GetFeature<Character, CharacterNerveFeature>();
+            .GetFeature<CharacterNerveFeature>();
 
         var action = feature.Actions[actionCode];
         action.Rating.ShouldBe(0);
@@ -48,7 +47,7 @@ public class CharacterNerveFeatureTest
         var feature = CharacterFactory
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterNerveFeature(t))
-            .GetFeature<Character, CharacterNerveFeature>()
+            .GetFeature<CharacterNerveFeature>()
             with
         { DriveMax = drive };
 

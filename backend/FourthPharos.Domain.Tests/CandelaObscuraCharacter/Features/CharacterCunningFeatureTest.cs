@@ -1,6 +1,5 @@
 using FourthPharos.Domain.CandelaObscuraCharacter;
 using FourthPharos.Domain.CandelaObscuraCharacter.Features;
-using FourthPharos.Domain.CandelaObscuraCharacter.Models;
 using FourthPharos.Domain.Features;
 
 namespace FourthPharos.Domain.Tests.CandelaObscuraCharacter.Features;
@@ -13,7 +12,7 @@ public class CharacterCunningFeatureTest
         var feature = CharacterFactory
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterCunningFeature(t))
-            .GetFeature<Character, CharacterCunningFeature>();
+            .GetFeature<CharacterCunningFeature>();
 
         feature.Actions.Count.ShouldBe(3);
         feature.Actions.ShouldContainKey(CharacterCunningFeature.SwayActionCode);
@@ -34,7 +33,7 @@ public class CharacterCunningFeatureTest
         var feature = CharacterFactory
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterCunningFeature(t))
-            .GetFeature<Character, CharacterCunningFeature>();
+            .GetFeature<CharacterCunningFeature>();
 
         var action = feature.Actions[actionCode];
         action.Rating.ShouldBe(0);
@@ -48,7 +47,7 @@ public class CharacterCunningFeatureTest
         var feature = CharacterFactory
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterCunningFeature(t))
-            .GetFeature<Character, CharacterCunningFeature>()
+            .GetFeature<CharacterCunningFeature>()
             with
         { DriveMax = drive };
 

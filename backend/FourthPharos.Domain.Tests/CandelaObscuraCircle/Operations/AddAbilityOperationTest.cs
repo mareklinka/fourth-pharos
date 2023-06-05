@@ -15,7 +15,7 @@ public class AddAbilityOperationTest
             .CreateCirle("Test Circle")
             .AddAbility(CircleAbility.ForgedInFire);
 
-        var feature = circle.GetFeature<Circle, CircleAbilitiesFeature>();
+        var feature = circle.GetFeature<CircleAbilitiesFeature>();
 
         feature.Abilities.ShouldHaveSingleItem();
         feature.Abilities.ShouldContain(CircleAbility.ForgedInFire);
@@ -28,11 +28,11 @@ public class AddAbilityOperationTest
             .CreateCirle("Test Circle")
             .AddAbility(CircleAbility.StaminaTraining);
 
-        var feature = circle.GetFeature<Circle, CircleAbilitiesFeature>();
+        var feature = circle.GetFeature<CircleAbilitiesFeature>();
 
         feature.Abilities.ShouldHaveSingleItem();
         feature.Abilities.ShouldContain(CircleAbility.StaminaTraining);
-        circle.GetFeature<Circle, StaminaTrainingFeature>().StaminaDice.ShouldBe(3);
+        circle.GetFeature<StaminaTrainingFeature>().StaminaDice.ShouldBe(3);
     }
 
     [Fact]

@@ -15,7 +15,7 @@ public class RestoreStaminaDiceOperationTest
             .AddAbility(CircleAbility.StaminaTraining)
             .ConsumeStaminaDice()
             .RestoreStaminaDice()
-            .GetFeature<Circle, StaminaTrainingFeature>()
+            .GetFeature<StaminaTrainingFeature>()
             .StaminaDice
             .ShouldBe(3);
 

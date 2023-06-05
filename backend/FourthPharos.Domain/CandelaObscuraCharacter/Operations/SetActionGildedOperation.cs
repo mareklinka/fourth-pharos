@@ -11,7 +11,7 @@ public static class SetActionGildedOperation
         string actionCode,
         bool isGilded) where TFeature : CharacterDriveFeatureBase
     {
-        var feature = character.GetFeature<Character, TFeature>();
+        var feature = character.GetFeature<TFeature>();
 
         return feature.Actions.TryGetValue(actionCode, out var action)
             ? character.UpdateFeature(feature with { Actions = feature.Actions.SetItem(actionCode, action with { IsGilded = isGilded }) })

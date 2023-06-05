@@ -41,19 +41,19 @@ public class CircleFactoryTest
 
             circle.Features.Count.ShouldBe(6);
 
-            circle.GetFeature<Circle, CircleNameFeature>();
-            circle.GetFeature<Circle, CircleLocationFeature>();
-            circle.GetFeature<Circle, CircleGearFeature>();
-            circle.GetFeature<Circle, CircleAbilitiesFeature>();
-            circle.GetFeature<Circle, CircleResourcesFeature>();
-            circle.GetFeature<Circle, CircleIlluminationFeature>();
+            circle.GetFeature<CircleNameFeature>();
+            circle.GetFeature<CircleLocationFeature>();
+            circle.GetFeature<CircleGearFeature>();
+            circle.GetFeature<CircleAbilitiesFeature>();
+            circle.GetFeature<CircleResourcesFeature>();
+            circle.GetFeature<CircleIlluminationFeature>();
         });
 
     [Fact]
     public void NewCircleWithoutLocation() =>
         CircleFactory
             .CreateCirle("Test circle")
-            .GetFeature<Circle, CircleLocationFeature>()
+            .GetFeature<CircleLocationFeature>()
             .Location
             .ShouldBeNull();
 
@@ -61,7 +61,7 @@ public class CircleFactoryTest
     public void NewCircleHasZeroIllumination() =>
         CircleFactory
             .CreateCirle("Test circle")
-            .GetFeature<Circle, CircleIlluminationFeature>()
+            .GetFeature<CircleIlluminationFeature>()
             .Illumination
             .ShouldBe(0);
 
@@ -69,7 +69,7 @@ public class CircleFactoryTest
     public void NewCircleHasZeroMilestone() =>
         CircleFactory
             .CreateCirle("Test circle")
-            .GetFeature<Circle, CircleIlluminationFeature>()
+            .GetFeature<CircleIlluminationFeature>()
             .Milestone
             .ShouldBe(CircleMilestone.None);
 
@@ -77,7 +77,7 @@ public class CircleFactoryTest
     public void NewCircleHasNoGear() =>
         CircleFactory
             .CreateCirle("Test circle")
-            .GetFeature<Circle, CircleGearFeature>()
+            .GetFeature<CircleGearFeature>()
             .Gear
             .ShouldBeEmpty();
 
@@ -89,7 +89,7 @@ public class CircleFactoryTest
     public void NewCircleHasOneOfEachResourceMax() =>
         CircleFactory
             .CreateCirle("Test circle")
-            .GetFeature<Circle, CircleResourcesFeature>()
+            .GetFeature<CircleResourcesFeature>()
             .ResourceMaximum
             .ShouldBe(1);
 
@@ -100,7 +100,7 @@ public class CircleFactoryTest
     public void NewCircleHasOneOfEachResource(CircleResource resource) =>
         CircleFactory
             .CreateCirle("Test circle")
-            .GetFeature<Circle, CircleResourcesFeature>()
+            .GetFeature<CircleResourcesFeature>()
             .Resources[resource]
             .ShouldBe(1);
 
@@ -108,7 +108,7 @@ public class CircleFactoryTest
     public void NewCircleIsFirstRank() =>
         CircleFactory
             .CreateCirle("Test circle")
-            .GetFeature<Circle, CircleIlluminationFeature>()
+            .GetFeature<CircleIlluminationFeature>()
             .Rank
             .ShouldBe(1);
 }

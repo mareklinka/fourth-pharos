@@ -1,4 +1,3 @@
-using FourthPharos.Domain.CandelaObscuraCircle;
 using FourthPharos.Domain.CandelaObscuraCircle.Features;
 using FourthPharos.Domain.CandelaObscuraCircle.Models;
 using FourthPharos.Domain.Features;
@@ -9,7 +8,7 @@ public static class SetNameOperation
 {
     public static Circle SetName(this Circle circle, string name)
     {
-        var feature = circle.GetFeature<Circle, CircleNameFeature>();
+        var feature = circle.GetFeature<CircleNameFeature>();
 
         CircleValidators.Name(name);
 

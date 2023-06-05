@@ -1,6 +1,5 @@
 using FourthPharos.Domain.CandelaObscuraCharacter;
 using FourthPharos.Domain.CandelaObscuraCharacter.Features;
-using FourthPharos.Domain.CandelaObscuraCharacter.Models;
 using FourthPharos.Domain.Features;
 
 namespace FourthPharos.Domain.Tests.CandelaObscuraCharacter;
@@ -41,7 +40,7 @@ public class CharacterFactoryTest
 
             character.Features.Count.ShouldBe(1);
 
-            character.GetFeature<Character, CharacterBasicInfoFeature>();
+            character.GetFeature<CharacterBasicInfoFeature>();
         });
 
     [Fact]
@@ -49,7 +48,7 @@ public class CharacterFactoryTest
     {
         var feature = CharacterFactory
             .CreateCharacter("Crowley Thornwood")
-            .GetFeature<Character, CharacterBasicInfoFeature>();
+            .GetFeature<CharacterBasicInfoFeature>();
 
         feature.Name.ShouldBe("Crowley Thornwood");
         feature.Pronouns.ShouldBeNull();

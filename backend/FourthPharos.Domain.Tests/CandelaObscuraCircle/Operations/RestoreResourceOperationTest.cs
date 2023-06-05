@@ -17,7 +17,7 @@ public class RestoreResourceOperationTest
             .CreateCirle("Test Circle")
             .ConsumeResource(resource)
             .RestoreResource(resource)
-            .GetFeature<Circle, CircleResourcesFeature>()
+            .GetFeature<CircleResourcesFeature>()
             .Resources[resource]
             .ShouldBe(1);
 

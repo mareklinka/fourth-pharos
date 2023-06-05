@@ -15,7 +15,7 @@ public class SetMaximumDriveOperationTest
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterNerveFeature(t))
             .SetMaximumDrive<CharacterNerveFeature>(drive)
-            .GetFeature<Character, CharacterNerveFeature>()
+            .GetFeature<CharacterNerveFeature>()
             .DriveMax
             .ShouldBe(drive);
 
@@ -27,12 +27,12 @@ public class SetMaximumDriveOperationTest
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterNerveFeature(t));
 
-        var feature = character.GetFeature<Character, CharacterNerveFeature>();
+        var feature = character.GetFeature<CharacterNerveFeature>();
 
         character
             .UpdateFeature(feature with { Drive = 10 })
             .SetMaximumDrive<CharacterNerveFeature>(drive)
-            .GetFeature<Character, CharacterNerveFeature>()
+            .GetFeature<CharacterNerveFeature>()
             .Drive
             .ShouldBe(drive);
     }
@@ -46,7 +46,7 @@ public class SetMaximumDriveOperationTest
                 .CreateCharacter("Crowley Thornwood")
                 .AddFeature(t => new CharacterNerveFeature(t))
                 .SetMaximumDrive<CharacterNerveFeature>(drive)
-                .GetFeature<Character, CharacterNerveFeature>()
+                .GetFeature<CharacterNerveFeature>()
                 .DriveMax
                 .ShouldBe(drive))
             .Code
@@ -59,7 +59,7 @@ public class SetMaximumDriveOperationTest
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterCunningFeature(t))
             .SetMaximumDrive<CharacterCunningFeature>(drive)
-            .GetFeature<Character, CharacterCunningFeature>()
+            .GetFeature<CharacterCunningFeature>()
             .DriveMax
             .ShouldBe(drive);
 
@@ -71,12 +71,12 @@ public class SetMaximumDriveOperationTest
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterCunningFeature(t));
 
-        var feature = character.GetFeature<Character, CharacterCunningFeature>();
+        var feature = character.GetFeature<CharacterCunningFeature>();
 
         character
             .UpdateFeature(feature with { Drive = 10 })
             .SetMaximumDrive<CharacterCunningFeature>(drive)
-            .GetFeature<Character, CharacterCunningFeature>()
+            .GetFeature<CharacterCunningFeature>()
             .Drive
             .ShouldBe(drive);
     }
@@ -90,7 +90,7 @@ public class SetMaximumDriveOperationTest
                 .CreateCharacter("Crowley Thornwood")
                 .AddFeature(t => new CharacterCunningFeature(t))
                 .SetMaximumDrive<CharacterCunningFeature>(drive)
-                .GetFeature<Character, CharacterCunningFeature>()
+                .GetFeature<CharacterCunningFeature>()
                 .DriveMax
                 .ShouldBe(drive))
             .Code
@@ -103,7 +103,7 @@ public class SetMaximumDriveOperationTest
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterIntuitionFeature(t))
             .SetMaximumDrive<CharacterIntuitionFeature>(drive)
-            .GetFeature<Character, CharacterIntuitionFeature>()
+            .GetFeature<CharacterIntuitionFeature>()
             .DriveMax
             .ShouldBe(drive);
 
@@ -115,12 +115,12 @@ public class SetMaximumDriveOperationTest
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterIntuitionFeature(t));
 
-        var feature = character.GetFeature<Character, CharacterIntuitionFeature>();
+        var feature = character.GetFeature<CharacterIntuitionFeature>();
 
         character
             .UpdateFeature(feature with { Drive = 10 })
             .SetMaximumDrive<CharacterIntuitionFeature>(drive)
-            .GetFeature<Character, CharacterIntuitionFeature>()
+            .GetFeature<CharacterIntuitionFeature>()
             .Drive
             .ShouldBe(drive);
     }
@@ -134,7 +134,7 @@ public class SetMaximumDriveOperationTest
                 .CreateCharacter("Crowley Thornwood")
                 .AddFeature(t => new CharacterIntuitionFeature(t))
                 .SetMaximumDrive<CharacterIntuitionFeature>(drive)
-                .GetFeature<Character, CharacterIntuitionFeature>()
+                .GetFeature<CharacterIntuitionFeature>()
                 .DriveMax
                 .ShouldBe(drive))
             .Code

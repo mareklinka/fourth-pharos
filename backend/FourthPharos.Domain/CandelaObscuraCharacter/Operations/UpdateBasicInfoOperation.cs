@@ -8,7 +8,7 @@ public static class UpdateBasicInfoOperation
 {
     public static Character UpdateBasicInfo(this Character character, BasicInfoModel basicInfo)
     {
-        var feature = character.GetFeature<Character, CharacterBasicInfoFeature>();
+        var feature = character.GetFeature<CharacterBasicInfoFeature>();
 
         CharacterValidators.Name(basicInfo.Name);
         CharacterValidators.BasicInfo(basicInfo.Pronouns);

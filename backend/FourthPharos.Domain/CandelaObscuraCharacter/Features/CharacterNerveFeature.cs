@@ -21,6 +21,4 @@ public sealed record CharacterNerveFeature : CharacterDriveFeatureBase
     public override string Code => "char_drive_nerve";
 
     public override int Version => 1;
-
-    public override object GetData() => Actions;
 }

@@ -13,7 +13,7 @@ public class RemoveAbilityOperationTest
         CircleFactory
             .CreateCirle("Test Circle")
             .RemoveAbility(CircleAbility.ForgedInFire)
-            .GetFeature<Circle, CircleAbilitiesFeature>()
+            .GetFeature<CircleAbilitiesFeature>()
             .Abilities
             .Length
             .ShouldBe(0);
@@ -24,7 +24,7 @@ public class RemoveAbilityOperationTest
             .CreateCirle("Test Circle")
             .AddAbility(CircleAbility.ForgedInFire)
             .RemoveAbility(CircleAbility.StaminaTraining)
-            .GetFeature<Circle, CircleAbilitiesFeature>()
+            .GetFeature<CircleAbilitiesFeature>()
             .Abilities
             .ShouldHaveSingleItem()
             .Code
@@ -36,5 +36,5 @@ public class RemoveAbilityOperationTest
             .CreateCirle("Test Circle")
             .AddAbility(CircleAbility.StaminaTraining)
             .RemoveAbility(CircleAbility.StaminaTraining)
-            .TryGetFeature<Circle, StaminaTrainingFeature>().ShouldBeNull();
+            .TryGetFeature<StaminaTrainingFeature>().ShouldBeNull();
 }

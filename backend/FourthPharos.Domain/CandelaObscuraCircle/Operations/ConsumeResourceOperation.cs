@@ -8,7 +8,7 @@ public static class ConsumeResourceOperation
 {
     public static Circle ConsumeResource(this Circle circle, CircleResource resource)
     {
-        var feature = circle.GetFeature<Circle, CircleResourcesFeature>();
+        var feature = circle.GetFeature<CircleResourcesFeature>();
 
         return feature.Resources[resource] switch
         {

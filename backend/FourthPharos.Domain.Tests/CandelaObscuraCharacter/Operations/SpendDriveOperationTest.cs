@@ -16,12 +16,12 @@ public class SpendDriveOperationTest
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterNerveFeature(t));
 
-        var feature = character.GetFeature<Character, CharacterNerveFeature>();
+        var feature = character.GetFeature<CharacterNerveFeature>();
 
         character
             .UpdateFeature(feature with { Drive = drive })
             .SpendDrive<CharacterNerveFeature>()
-            .GetFeature<Character, CharacterNerveFeature>()
+            .GetFeature<CharacterNerveFeature>()
             .Drive
             .ShouldBe(drive - 1);
     }
@@ -46,12 +46,12 @@ public class SpendDriveOperationTest
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterCunningFeature(t));
 
-        var feature = character.GetFeature<Character, CharacterCunningFeature>();
+        var feature = character.GetFeature<CharacterCunningFeature>();
 
         character
             .UpdateFeature(feature with { Drive = drive })
             .SpendDrive<CharacterCunningFeature>()
-            .GetFeature<Character, CharacterCunningFeature>()
+            .GetFeature<CharacterCunningFeature>()
             .Drive
             .ShouldBe(drive - 1);
     }
@@ -76,12 +76,12 @@ public class SpendDriveOperationTest
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterIntuitionFeature(t));
 
-        var feature = character.GetFeature<Character, CharacterIntuitionFeature>();
+        var feature = character.GetFeature<CharacterIntuitionFeature>();
 
         character
             .UpdateFeature(feature with { Drive = drive })
             .SpendDrive<CharacterIntuitionFeature>()
-            .GetFeature<Character, CharacterIntuitionFeature>()
+            .GetFeature<CharacterIntuitionFeature>()
             .Drive
             .ShouldBe(drive - 1);
     }

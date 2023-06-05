@@ -27,11 +27,11 @@ public class CircleMapperTest
         var deserialized = CircleMapper.FromStorageModel(readModel);
 
         deserialized.ShouldNotBeSameAs(c);
-        deserialized.GetFeature<Circle, CircleNameFeature>().Name.ShouldBe(c.GetFeature<Circle, CircleNameFeature>().Name);
-        deserialized.GetFeature<Circle, CircleLocationFeature>().Location.ShouldBe(c.GetFeature<Circle, CircleLocationFeature>().Location);
-        deserialized.GetFeature<Circle, StaminaTrainingFeature>().StaminaDice.ShouldBe(c.GetFeature<Circle, StaminaTrainingFeature>().StaminaDice);
-        deserialized.GetFeature<Circle, CircleGearFeature>().Gear.ShouldBe(c.GetFeature<Circle, CircleGearFeature>().Gear);
-        deserialized.GetFeature<Circle, CircleResourcesFeature>().Resources.ShouldBe(c.GetFeature<Circle, CircleResourcesFeature>().Resources);
-        deserialized.GetFeature<Circle, CircleIlluminationFeature>().Illumination.ShouldBe(c.GetFeature<Circle, CircleIlluminationFeature>().Illumination);
+        deserialized.GetFeature<CircleNameFeature>().Name.ShouldBe(c.GetFeature<CircleNameFeature>().Name);
+        deserialized.GetFeature<CircleLocationFeature>().Location.ShouldBe(c.GetFeature<CircleLocationFeature>().Location);
+        deserialized.GetFeature<StaminaTrainingFeature>().StaminaDice.ShouldBe(c.GetFeature<StaminaTrainingFeature>().StaminaDice);
+        deserialized.GetFeature<CircleGearFeature>().Gear.ShouldBe(c.GetFeature<CircleGearFeature>().Gear);
+        deserialized.GetFeature<CircleResourcesFeature>().Resources.ShouldBe(c.GetFeature<CircleResourcesFeature>().Resources);
+        deserialized.GetFeature<CircleIlluminationFeature>().Illumination.ShouldBe(c.GetFeature<CircleIlluminationFeature>().Illumination);
     }
 }

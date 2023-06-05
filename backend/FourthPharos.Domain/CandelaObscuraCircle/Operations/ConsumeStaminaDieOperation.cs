@@ -8,7 +8,7 @@ public static class ConsumeStaminaDieOperation
 {
     public static Circle ConsumeStaminaDice(this Circle circle)
     {
-        var feature = circle.GetFeature<Circle, StaminaTrainingFeature>();
+        var feature = circle.GetFeature<StaminaTrainingFeature>();
         return feature.StaminaDice switch
         {
             < 1 => throw DomainExceptions.CircleExceptions.NotEnoughStaminaDice(),

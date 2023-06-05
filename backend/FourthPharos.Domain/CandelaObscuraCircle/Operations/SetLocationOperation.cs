@@ -1,4 +1,3 @@
-using FourthPharos.Domain.CandelaObscuraCircle;
 using FourthPharos.Domain.CandelaObscuraCircle.Features;
 using FourthPharos.Domain.CandelaObscuraCircle.Models;
 using FourthPharos.Domain.Features;
@@ -9,7 +8,7 @@ public static class SetLocationOperation
 {
     public static Circle SetLocation(this Circle circle, string location)
     {
-        var feature = circle.GetFeature<Circle, CircleLocationFeature>();
+        var feature = circle.GetFeature<CircleLocationFeature>();
 
         CircleValidators.Location(location);
 

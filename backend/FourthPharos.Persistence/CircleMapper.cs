@@ -1,5 +1,4 @@
 ﻿using FourthPharos.Domain.CandelaObscuraCharacter.Features;
-using FourthPharos.Domain.CandelaObscuraCharacter.Models;
 using FourthPharos.Domain.CandelaObscuraCircle.Features;
 using FourthPharos.Domain.CandelaObscuraCircle.Models;
 using FourthPharos.Domain.Features;
@@ -15,11 +14,11 @@ public static class CircleMapper
             circle.Characters.Select(_ => new CharacterReference(
                 _.Id.ToString("D"),
                 _.OwnerId.ToString("D"),
-                _.GetFeature<Character, CharacterBasicInfoFeature>().Name)).ToArray(),
+                _.GetFeature<CharacterBasicInfoFeature>().Name)).ToArray(),
             circle.Features.Select(_ => new FeatureStorageWriteModel(
                 _.Code,
                 _.Version,
-                _.GetData())).ToArray());
+                _.GetFeatureData())).ToArray());
 
     public static Circle FromStorageModel(CircleStorageReadModel circleModel)
     {
@@ -29,17 +28,17 @@ public static class CircleMapper
         {
             FeatureBase<Circle> f = (fm.FeatureCode, fm.Version) switch
             {
-                (CircleNameFeature.FeatureCode, CircleNameFeature.FeatureVersion) => new CircleNameFeature(c).SetData(fm.Data),
-                (CircleAbilitiesFeature.FeatureCode, CircleAbilitiesFeature.FeatureVersion) => new CircleAbilitiesFeature(c).SetData(fm.Data),
-                (CircleGearFeature.FeatureCode, CircleGearFeature.FeatureVersion) => new CircleGearFeature(c).SetData(fm.Data),
-                (CircleIlluminationFeature.FeatureCode, CircleIlluminationFeature.FeatureVersion) => new CircleIlluminationFeature(c).SetData(fm.Data),
-                (CircleLocationFeature.FeatureCode, CircleLocationFeature.FeatureVersion) => new CircleLocationFeature(c).SetData(fm.Data),
-                (CircleResourcesFeature.FeatureCode, CircleResourcesFeature.FeatureVersion) => new CircleResourcesFeature(c).SetData(fm.Data),
-                (StaminaTrainingFeature.FeatureCode, StaminaTrainingFeature.FeatureVersion) => new StaminaTrainingFeature(c).SetData(fm.Data),
+                (CircleNameFeature.FeatureCode, CircleNameFeature.FeatureVersion) => new CircleNameFeature(c),
+                (CircleAbilitiesFeature.FeatureCode, CircleAbilitiesFeature.FeatureVersion) => new CircleAbilitiesFeature(c),
+                (CircleGearFeature.FeatureCode, CircleGearFeature.FeatureVersion) => new CircleGearFeature(c),
+                (CircleIlluminationFeature.FeatureCode, CircleIlluminationFeature.FeatureVersion) => new CircleIlluminationFeature(c),
+                (CircleLocationFeature.FeatureCode, CircleLocationFeature.FeatureVersion) => new CircleLocationFeature(c),
+                (CircleResourcesFeature.FeatureCode, CircleResourcesFeature.FeatureVersion) => new CircleResourcesFeature(c),
+                (StaminaTrainingFeature.FeatureCode, StaminaTrainingFeature.FeatureVersion) => new StaminaTrainingFeature(c),
                 _ => throw new InvalidOperationException("Unknown feature encountered")
             };
 
-            c.Features = c.Features.Add(f);
+            c.Features = c.Features.Add(f.SetFeatureData(fm.Data));
         }
 
         return c;

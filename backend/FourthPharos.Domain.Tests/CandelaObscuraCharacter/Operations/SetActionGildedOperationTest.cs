@@ -21,13 +21,13 @@ public class SetActionGildedOperationTest
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterNerveFeature(t));
 
-        var feature = character.GetFeature<Character, CharacterNerveFeature>();
+        var feature = character.GetFeature<CharacterNerveFeature>();
         var action = feature.Actions[actionCode];
 
         character
             .UpdateFeature(feature with { Actions = feature.Actions.SetItem(actionCode, action with { IsGilded = !isGilded }) })
             .SetActionGilded<CharacterNerveFeature>(actionCode, isGilded)
-            .GetFeature<Character, CharacterNerveFeature>()
+            .GetFeature<CharacterNerveFeature>()
             .Actions[actionCode]
             .IsGilded
             .ShouldBe(isGilded);
@@ -46,13 +46,13 @@ public class SetActionGildedOperationTest
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterCunningFeature(t));
 
-        var feature = character.GetFeature<Character, CharacterCunningFeature>();
+        var feature = character.GetFeature<CharacterCunningFeature>();
         var action = feature.Actions[actionCode];
 
         character
             .UpdateFeature(feature with { Actions = feature.Actions.SetItem(actionCode, action with { IsGilded = !isGilded }) })
             .SetActionGilded<CharacterCunningFeature>(actionCode, isGilded)
-            .GetFeature<Character, CharacterCunningFeature>()
+            .GetFeature<CharacterCunningFeature>()
             .Actions[actionCode]
             .IsGilded
             .ShouldBe(isGilded);
@@ -71,13 +71,13 @@ public class SetActionGildedOperationTest
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterIntuitionFeature(t));
 
-        var feature = character.GetFeature<Character, CharacterIntuitionFeature>();
+        var feature = character.GetFeature<CharacterIntuitionFeature>();
         var action = feature.Actions[actionCode];
 
         character
             .UpdateFeature(feature with { Actions = feature.Actions.SetItem(actionCode, action with { IsGilded = !isGilded }) })
             .SetActionGilded<CharacterIntuitionFeature>(actionCode, isGilded)
-            .GetFeature<Character, CharacterIntuitionFeature>()
+            .GetFeature<CharacterIntuitionFeature>()
             .Actions[actionCode]
             .IsGilded
             .ShouldBe(isGilded);

@@ -11,7 +11,7 @@ public static class SetActionRatingOperation
         string actionCode,
         int rating) where TFeature : CharacterDriveFeatureBase
     {
-        var feature = character.GetFeature<Character, TFeature>();
+        var feature = character.GetFeature<TFeature>();
 
         CharacterValidators.ActionRating(rating);
 

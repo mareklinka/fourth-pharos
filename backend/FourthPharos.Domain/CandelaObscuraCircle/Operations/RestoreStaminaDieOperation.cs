@@ -8,7 +8,7 @@ public static class RestoreStaminaDieOperation
 {
     public static Circle RestoreStaminaDice(this Circle circle)
     {
-        var feature = circle.GetFeature<Circle, StaminaTrainingFeature>();
+        var feature = circle.GetFeature<StaminaTrainingFeature>();
 
         return feature.StaminaDice == 3
             ? throw DomainExceptions.CircleExceptions.StaminaDiceFull()

@@ -16,13 +16,13 @@ public class SetActionRatingOperationTest
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterNerveFeature(t));
 
-        var feature = character.GetFeature<Character, CharacterNerveFeature>();
+        var feature = character.GetFeature<CharacterNerveFeature>();
         var action = feature.Actions[actionCode];
 
         character
             .UpdateFeature(feature with { Actions = feature.Actions.SetItem(actionCode, action with { Rating = -1 }) })
             .SetActionRating<CharacterNerveFeature>(actionCode, rating)
-            .GetFeature<Character, CharacterNerveFeature>()
+            .GetFeature<CharacterNerveFeature>()
             .Actions[actionCode]
             .Rating
             .ShouldBe(rating);
@@ -36,13 +36,13 @@ public class SetActionRatingOperationTest
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterCunningFeature(t));
 
-        var feature = character.GetFeature<Character, CharacterCunningFeature>();
+        var feature = character.GetFeature<CharacterCunningFeature>();
         var action = feature.Actions[actionCode];
 
         character
             .UpdateFeature(feature with { Actions = feature.Actions.SetItem(actionCode, action with { Rating = -1 }) })
             .SetActionRating<CharacterCunningFeature>(actionCode, rating)
-            .GetFeature<Character, CharacterCunningFeature>()
+            .GetFeature<CharacterCunningFeature>()
             .Actions[actionCode]
             .Rating
             .ShouldBe(rating);
@@ -56,13 +56,13 @@ public class SetActionRatingOperationTest
             .CreateCharacter("Crowley Thornwood")
             .AddFeature(t => new CharacterIntuitionFeature(t));
 
-        var feature = character.GetFeature<Character, CharacterIntuitionFeature>();
+        var feature = character.GetFeature<CharacterIntuitionFeature>();
         var action = feature.Actions[actionCode];
 
         character
             .UpdateFeature(feature with { Actions = feature.Actions.SetItem(actionCode, action with { Rating = -1 }) })
             .SetActionRating<CharacterIntuitionFeature>(actionCode, rating)
-            .GetFeature<Character, CharacterIntuitionFeature>()
+            .GetFeature<CharacterIntuitionFeature>()
             .Actions[actionCode]
             .Rating
             .ShouldBe(rating);

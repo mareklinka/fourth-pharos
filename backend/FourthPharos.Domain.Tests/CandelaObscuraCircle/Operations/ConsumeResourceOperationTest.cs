@@ -16,7 +16,7 @@ public class ConsumeResourceOperationTest
         CircleFactory
             .CreateCirle("Test Circle")
             .ConsumeResource(resource)
-            .GetFeature<Circle, CircleResourcesFeature>()
+            .GetFeature<CircleResourcesFeature>()
             .Resources[resource]
             .ShouldBe(0);
 

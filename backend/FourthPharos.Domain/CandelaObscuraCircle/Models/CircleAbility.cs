@@ -11,7 +11,7 @@ public record CircleAbility
         { "stm", new(
             "stm",
             t => t.AddFeature(t => new StaminaTrainingFeature(t)),
-            t => t.RemoveFeature<Circle, StaminaTrainingFeature>()) },
+            t => t.RemoveFeature<StaminaTrainingFeature>()) },
         { "nlb", new("nlb") },
         { "fif", new("fif") },
         { "int", new("int") },

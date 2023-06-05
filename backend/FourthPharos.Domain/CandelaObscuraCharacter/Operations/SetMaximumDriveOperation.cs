@@ -10,7 +10,7 @@ public static class SetMaximumDriveOperation
         this Character character,
         int drive) where TFeature : CharacterDriveFeatureBase
     {
-        var feature = character.GetFeature<Character, TFeature>();
+        var feature = character.GetFeature<TFeature>();
 
         CharacterValidators.MaximumDrive(drive);
 
