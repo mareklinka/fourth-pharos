@@ -16,6 +16,7 @@ public static class CircleFactory
             .AddFeature(t => new CircleAbilitiesFeature(t))
             .AddFeature(t => new CircleIlluminationFeature(t))
             .AddFeature(t => new CircleGearFeature(t))
-            .AddFeature(t => new CircleResourcesFeature(t));
+            .AddFeature(t => new CircleResourcesFeature(t))
+            .AddFeature(t => new CircleActiveAssignmentFeature(t));
     }
 }

@@ -31,6 +31,10 @@ public static class DomainExceptions
         public static DomainActionException AbilityForRankExists(int rank) => new(nameof(AbilityForRankExists), $"Ability for circle rank {rank} is already taken", rank);
 
         public static DomainActionException InsufficientRank(int takenAtRank) => new(nameof(InsufficientRank), $"Circle has not reached rank {takenAtRank}", takenAtRank);
+
+        public static DomainActionException AssignmentAlreadyActive() => new(nameof(AssignmentAlreadyActive), $"Circle is already on an assignment");
+
+        public static DomainActionException NoActiveAssignment() => new(nameof(NoActiveAssignment), $"Circle is already on an assignment");
     }
 
     public static class CircleGearExceptions
