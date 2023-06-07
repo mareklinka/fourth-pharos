@@ -39,7 +39,7 @@ public class CircleFactoryTest
         {
             var circle = CircleFactory.CreateCirle("Test circle");
 
-            circle.Features.Count.ShouldBe(6);
+            circle.Features.Count.ShouldBe(7);
 
             circle.GetFeature<Circle, CircleNameFeature>();
             circle.GetFeature<Circle, CircleLocationFeature>();
@@ -47,6 +47,7 @@ public class CircleFactoryTest
             circle.GetFeature<Circle, CircleAbilitiesFeature>();
             circle.GetFeature<Circle, CircleResourcesFeature>();
             circle.GetFeature<Circle, CircleIlluminationFeature>();
+            circle.GetFeature<Circle, CircleActiveAssignmentFeature>();
         });
 
     [Fact]
