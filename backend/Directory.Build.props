@@ -3,10 +3,12 @@
         <LangVersion>latest</LangVersion>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
         <AnalysisMode>AllEnabledByDefault</AnalysisMode>
-        <NoWarn>$(NoWarn);CA1014</NoWarn>
+        <NoWarn>$(NoWarn);CA1014;CS1591</NoWarn>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <Nullable>enable</Nullable>
         <GenerateAssemblyInformationalVersionAttribute>true</GenerateAssemblyInformationalVersionAttribute>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile> <!-- Currently necessary: https://github.com/dotnet/roslyn/issues/41640  -->
     </PropertyGroup>
 
     <PropertyGroup>
