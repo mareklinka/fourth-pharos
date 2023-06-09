@@ -208,3 +208,7 @@ dotnet_diagnostic.CA1852.severity = none
 # IDE0046: If statement can be siplified
 dotnet_diagnostic.IDE0046.severity = suggestion
 
+# CS1591: Add XML comments to public types and members
+dotnet_diagnostic.CS1591.severity = none
+
+

@@ -1,4 +1,3 @@
-using FourthPharos.Domain.CandelaObscuraCircle;
 using FourthPharos.Domain.CandelaObscuraCircle.Features;
 using FourthPharos.Domain.CandelaObscuraCircle.Models;
 using FourthPharos.Domain.Features;
