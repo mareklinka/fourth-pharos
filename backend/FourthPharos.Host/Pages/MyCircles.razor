@@ -1,0 +1,22 @@
+@page "/my-circles"
+@namespace FourthPharos.Host.Pages
+
+@using FourthPharos.Host.Services
+
+@inject ICircleService circleService
+
+<h2>My Circles</h2>
+
+<RadzenTextBox style="display: block" Name="NewCircleName" @bind-Value=@_newCircleName class="w-100" />
+<RadzenRequiredValidator Component="NewCircleName" Text="Circle name is required" Style="position: absolute"/>
+<RadzenButton ButtonType="ButtonType.Submit" Click="@(() => circleService.CreateCircle(_newCircleName))">Create a circle</RadzenButton>
+
+<RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Start" Wrap="FlexWrap.Wrap">
+    @foreach (var c in circleService.GetCircles())
+    {
+        <RadzenCard>
+            <RadzenText>Circle Name: @c.Name</RadzenText>
+            <RadzenText>Members: @c.Members</RadzenText>
+        </RadzenCard>
+    }
+</RadzenStack>

@@ -1,0 +1,24 @@
+﻿@using Microsoft.Identity.Web
+@using Microsoft.Extensions.Options
+@inject IOptionsMonitor<MicrosoftIdentityOptions> microsoftIdentityOptions
+@inject AuthenticationStateProvider authProvider
+@namespace FourthPharos.Host.Shared
+
+<AuthorizeView>
+    <Authorized>
+        <div style="display: flex; gap: 1rem; margin-right: 0.5rem;">
+            @if (_canEditProfile)
+            {
+                <a href="MicrosoftIdentity/Account/EditProfile">Hello, @_username</a>
+            }
+            else
+            {
+                <text>Hello, @_username</text>
+            }
+            <a href="MicrosoftIdentity/Account/SignOut">Log out</a>
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <a href="MicrosoftIdentity/Account/SignIn"  style="margin-right: 0.5rem;">Log in</a>
+    </NotAuthorized>
+</AuthorizeView>
