@@ -7,7 +7,7 @@ namespace FourthPharos.Domain.CandelaObscuraCharacter.Operations;
 
 public static class AddRoleOperation
 {
-    public static Character AddRole(this Character character, CharacterSpecialty specialty)
+    public static Character SetRole(this Character character, CharacterSpecialty specialty)
     {
         var feature = character.GetFeature<Character, CharacterRoleFeature>();
 
