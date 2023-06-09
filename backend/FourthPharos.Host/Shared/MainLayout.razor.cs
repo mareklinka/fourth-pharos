@@ -2,12 +2,12 @@ namespace FourthPharos.Host.Shared;
 
 public partial class MainLayout
 {
-    private bool _isAuthenticated;
-    private bool _isSidebarExpanded = true;
+    private bool isAuthenticated;
+    private bool isSidebarExpanded = true;
 
     protected override async Task OnInitializedAsync()
     {
         var authState = await authProvider.GetAuthenticationStateAsync();
-        _isAuthenticated = authState.User.Identity?.IsAuthenticated is true;
+        isAuthenticated = authState.User.Identity?.IsAuthenticated is true;
     }
 }

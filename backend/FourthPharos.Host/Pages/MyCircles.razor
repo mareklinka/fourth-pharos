@@ -8,9 +8,9 @@
 
 <h2>My Circles</h2>
 
-<RadzenTextBox style="display: block" Name="NewCircleName" @bind-Value=@_newCircleName class="w-100" />
+<RadzenTextBox style="display: block" Name="NewCircleName" @bind-Value=@newCircleName class="w-100" />
 <RadzenRequiredValidator Component="NewCircleName" Text="Circle name is required" Style="position: absolute"/>
-<RadzenButton ButtonType="ButtonType.Submit" Click="@(() => CreateCircle(_newCircleName))">Create a circle</RadzenButton>
+<RadzenButton ButtonType="ButtonType.Submit" Click="@(() => CreateCircle(newCircleName))">Create a circle</RadzenButton>
 
 <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Start" Wrap="FlexWrap.Wrap">
     @foreach (var c in circleService.GetCircles())
