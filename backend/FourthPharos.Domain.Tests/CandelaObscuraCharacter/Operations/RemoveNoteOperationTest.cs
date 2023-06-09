@@ -25,4 +25,13 @@ public class RemoveNoteOperationTest
             .Notes
             .ShouldBeEmpty();
     }
+
+    [Fact]
+    public void RemoveNonExistentNoteFails() =>
+        Should.Throw<DomainActionException>(() => CharacterFactory
+            .CreateCharacter("Crowley Thornwood")
+            .RemoveNote(Guid.Empty))
+            .Code
+            .ShouldBe(nameof(DomainExceptions.CharacterExceptions.InvalidNote));
+
 }
