@@ -10,7 +10,7 @@ public static class CircleFactory
     {
         CircleValidators.Name(name);
 
-        return new Circle()
+        return new Circle(Guid.NewGuid())
             .AddFeature(t => new CircleNameFeature(t, name))
             .AddFeature(t => new CircleLocationFeature(t))
             .AddFeature(t => new CircleAbilitiesFeature(t))

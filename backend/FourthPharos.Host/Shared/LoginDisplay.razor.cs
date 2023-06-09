@@ -9,8 +9,8 @@ public partial class LoginDisplay
 
     protected override async Task OnInitializedAsync()
     {
-        var user = await authProvider.GetAuthenticationStateAsync();
-        _username = user.User.FindFirstValue("extension_Username");
+        var authState = await authProvider.GetAuthenticationStateAsync();
+        _username = authState.User.FindFirstValue("extension_Username");
 
         var options = microsoftIdentityOptions.CurrentValue;
         _canEditProfile = !string.IsNullOrEmpty(options.EditProfilePolicyId);

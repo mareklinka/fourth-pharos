@@ -4,7 +4,7 @@ using FourthPharos.Domain.Features;
 
 namespace FourthPharos.Domain.CandelaObscuraCircle.Models;
 
-public record Circle : FeatureTarget<Circle>
+public record Circle(Guid Id) : FeatureTarget<Circle>
 {
     public ImmutableArray<Character> Characters { get; internal set; } = ImmutableArray.Create<Character>();
 }
