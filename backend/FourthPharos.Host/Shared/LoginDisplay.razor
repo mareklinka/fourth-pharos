@@ -7,13 +7,13 @@
 <AuthorizeView>
     <Authorized>
         <div style="display: flex; gap: 1rem; margin-right: 0.5rem;">
-            @if (_canEditProfile)
+            @if (canEditProfile)
             {
-                <a href="MicrosoftIdentity/Account/EditProfile">Hello, @_username</a>
+                <a href="MicrosoftIdentity/Account/EditProfile">Hello, @username</a>
             }
             else
             {
-                <text>Hello, @_username</text>
+                <text>Hello, @username</text>
             }
             <a href="MicrosoftIdentity/Account/SignOut">Log out</a>
         </div>
