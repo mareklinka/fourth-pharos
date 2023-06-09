@@ -1,6 +1,7 @@
 using FourthPharos.Domain.CandelaObscuraCharacter;
 using FourthPharos.Domain.CandelaObscuraCharacter.Features;
 using FourthPharos.Domain.CandelaObscuraCharacter.Models;
+using FourthPharos.Domain.CandelaObscuraCharacter.Operations;
 using FourthPharos.Domain.Features;
 using FourthPharos.Domain.Models;
 
@@ -24,7 +25,9 @@ public class CharacterRoleFeatureTest
         var character = CharacterFactory
             .CreateCharacter("Crowley Thornwood");
 
-        var feature = character.UpdateFeature(new CharacterRoleFeature(character, specialty))
+        var feature = character
+            .SetRole(CharacterSpecialty.Criminal)
+            .SetRole(specialty)
             .GetFeature<Character, CharacterRoleFeature>();
 
         feature.Specialty.ShouldBe(specialty);
@@ -38,7 +41,7 @@ public class CharacterRoleFeatureTest
             .CreateCharacter("Crowley Thornwood");
 
         Should
-            .Throw<DomainActionException>(() => new CharacterRoleFeature(character, (CharacterSpecialty)150))
+            .Throw<DomainActionException>(() => new CharacterRoleFeature(character, (CharacterSpecialty)150).Role)
             .Code
             .ShouldBe(nameof(ApplicationExceptions.MissingRoleAssignment));
     }
