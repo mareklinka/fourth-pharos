@@ -211,4 +211,7 @@ dotnet_diagnostic.IDE0046.severity = suggestion
 # CS1591: Add XML comments to public types and members
 dotnet_diagnostic.CS1591.severity = none
 
+# CA1716: Identifiers should not match keywords
+dotnet_diagnostic.CA1716.severity = none
+
 
