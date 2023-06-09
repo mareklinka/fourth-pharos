@@ -86,5 +86,11 @@ public static class DomainExceptions
         public static DomainActionException InvalidIlluminationKey(string keyCode) => new(nameof(InvalidIlluminationKey), $"Illumination key {keyCode} does not exist", keyCode);
 
         public static DomainActionException IlluminationKeyAlreadyMarked(string keyCode) => new(nameof(IlluminationKeyAlreadyMarked), $"Illumination key {keyCode} is already marked", keyCode);
+
+        public static DomainActionException RelationshipNameTooLong(int length) => new(nameof(RelationshipNameTooLong), $"The relationship name must not exceed {length} characters", length);
+
+        public static DomainActionException RelationshipDescriptionTooLong(int length) => new(nameof(RelationshipDescriptionTooLong), $"The relationship description must not exceed {length} characters", length);
+
+        public static DomainActionException InvalidRelationship(Guid id) => new(nameof(InvalidRelationship), $"Relationship {id} does not exist", id);
     }
 }
