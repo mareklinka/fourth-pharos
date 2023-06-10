@@ -9,7 +9,7 @@ public sealed class CircleService : ICircleService
 
     public ICollection<CircleModel> GetCircles() => _circles;
 
-    public CircleModel CreateCircle(string name, Guid userId)
+    public CircleModel CreateCircle(string? name, Guid userId)
     {
         var circle = new CircleModel(CircleFactory.CreateCirle(name), userId);
 

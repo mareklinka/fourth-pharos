@@ -6,7 +6,7 @@ namespace FourthPharos.Domain.CandelaObscuraCircle.Operations;
 
 public static class SetLocationOperation
 {
-    public static Circle SetLocation(this Circle circle, string location)
+    public static Circle SetLocation(this Circle circle, string? location)
     {
         var feature = circle.GetFeature<Circle, CircleLocationFeature>();
 

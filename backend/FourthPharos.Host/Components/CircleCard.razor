@@ -1,8 +1,11 @@
 @namespace FourthPharos.Host.Components
 @inherits StylePassthroughComponent
 
+@inject NavigationManager navigator
+
 <RadzenCard class="@Classes" style="@Styles">
     <RadzenText>Circle Name: @Name</RadzenText>
     <RadzenText>Circle Location: @Location</RadzenText>
     <RadzenText>Members: @Members</RadzenText>
+    <RadzenButton Click=@(() => navigator.NavigateTo($"/circle/edit/{Id}"))>Edit</RadzenButton>
 </RadzenCard>

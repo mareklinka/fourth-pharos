@@ -8,24 +8,6 @@ namespace FourthPharos.Domain.Tests.CandelaObscuraCircle;
 public class CircleFactoryTest
 {
     [Fact]
-    public void EmptyNameFails()
-    {
-        Should
-            .Throw<DomainActionException>(() => CircleFactory.CreateCirle(string.Empty))
-            .Code
-            .ShouldBe(nameof(DomainExceptions.CircleExceptions.CircleNameEmpty));
-    }
-
-    [Fact]
-    public void WhitespaceOnlyNameFails()
-    {
-        Should
-            .Throw<DomainActionException>(() => CircleFactory.CreateCirle(" \t"))
-            .Code
-            .ShouldBe(nameof(DomainExceptions.CircleExceptions.CircleNameEmpty));
-    }
-
-    [Fact]
     public void NameMustNotExceedMaxLength()
     {
         var ex = Should.Throw<DomainActionException>(() => CircleFactory.CreateCirle(new string('a', CircleValidators.NameMaxLength + 1)));

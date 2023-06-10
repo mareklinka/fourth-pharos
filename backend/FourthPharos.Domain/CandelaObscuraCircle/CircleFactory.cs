@@ -6,7 +6,7 @@ namespace FourthPharos.Domain.CandelaObscuraCircle;
 
 public static class CircleFactory
 {
-    public static Circle CreateCirle(string name)
+    public static Circle CreateCirle(string? name)
     {
         CircleValidators.Name(name);
 

@@ -6,14 +6,14 @@ using FourthPharos.Domain.Features;
 
 namespace FourthPharos.Domain.Tests.CandelaObscuraCircle.Operations;
 
-public class AddAbilityOperationTest
+public class SelectAbilityOperationTest
 {
     [Fact]
-    public void AddAbility()
+    public void SelectAbility()
     {
         var circle = CircleFactory
             .CreateCirle("Test Circle")
-            .AddAbility(CircleAbility.ForgedInFire.Code, 1);
+            .SelectAbility(CircleAbility.ForgedInFire.Code, 1);
 
         var feature = circle.GetFeature<Circle, CircleAbilitiesFeature>();
 
@@ -26,7 +26,7 @@ public class AddAbilityOperationTest
     {
         var circle = CircleFactory
             .CreateCirle("Test Circle")
-            .AddAbility(CircleAbility.StaminaTraining.Code, 1);
+            .SelectAbility(CircleAbility.StaminaTraining.Code, 1);
 
         var feature = circle.GetFeature<Circle, CircleAbilitiesFeature>();
 
@@ -40,7 +40,7 @@ public class AddAbilityOperationTest
     {
         Should.Throw<DomainActionException>(() => CircleFactory
             .CreateCirle("Test Circle")
-            .AddAbility("ab1", 1))
+            .SelectAbility("ab1", 1))
         .Code
         .ShouldBe(nameof(DomainExceptions.CircleExceptions.InvalidAbility));
     }
@@ -51,33 +51,25 @@ public class AddAbilityOperationTest
         Should.Throw<DomainActionException>(() => CircleFactory
             .CreateCirle("Test Circle")
             .AddIllumination(24)
-            .AddAbility(CircleAbility.ForgedInFire.Code, 1)
-            .AddAbility(CircleAbility.ForgedInFire.Code, 2))
+            .SelectAbility(CircleAbility.ForgedInFire.Code, 1)
+            .SelectAbility(CircleAbility.ForgedInFire.Code, 2))
         .Code
         .ShouldBe(nameof(DomainExceptions.CircleExceptions.AbilityAlreadyExists));
     }
 
     [Fact]
-    public void AbilityLimitTest()
+    public void AbilityReplacementTest()
     {
-        Should.Throw<DomainActionException>(() => CircleFactory
+        var circle = CircleFactory
             .CreateCirle("Test Circle")
-            .AddAbility(CircleAbility.ForgedInFire.Code, 1)
-            .AddAbility(CircleAbility.Interdisciplinary.Code, 1))
-        .Code
-        .ShouldBe(nameof(DomainExceptions.CircleExceptions.AbilityLimitReached));
-    }
+            .SelectAbility(CircleAbility.ForgedInFire.Code, 1)
+            .SelectAbility(CircleAbility.Interdisciplinary.Code, 1);
 
-    [Fact]
-    public void AddAbilityOfExistingRankFails()
-    {
-        Should.Throw<DomainActionException>(() => CircleFactory
-            .CreateCirle("Test Circle")
-            .AddIllumination(24)
-            .AddAbility(CircleAbility.ForgedInFire.Code, 1)
-            .AddAbility(CircleAbility.StaminaTraining.Code, 1))
-        .Code
-        .ShouldBe(nameof(DomainExceptions.CircleExceptions.AbilityForRankExists));
+        var feature = circle.GetFeature<Circle, CircleAbilitiesFeature>();
+
+        feature.Abilities.ShouldHaveSingleItem();
+        feature.Abilities.ShouldContain(CircleAbility.Interdisciplinary with { TakenAtRank = 1 });
+
     }
 
     [Fact]
@@ -85,8 +77,26 @@ public class AddAbilityOperationTest
     {
         Should.Throw<DomainActionException>(() => CircleFactory
             .CreateCirle("Test Circle")
-            .AddAbility(CircleAbility.ForgedInFire.Code, 2))
+            .SelectAbility(CircleAbility.ForgedInFire.Code, 2))
         .Code
         .ShouldBe(nameof(DomainExceptions.CircleExceptions.InsufficientRank));
     }
+
+    [Fact]
+    public void RemoveAbility() =>
+        CircleFactory
+            .CreateCirle("Test Circle")
+            .SelectAbility(null, 1)
+            .GetFeature<Circle, CircleAbilitiesFeature>()
+            .Abilities
+            .Length
+            .ShouldBe(0);
+
+    [Fact]
+    public void StaminaTrainingUnhooksFeatureTest() =>
+        CircleFactory
+            .CreateCirle("Test Circle")
+            .SelectAbility(CircleAbility.StaminaTraining.Code, 1)
+            .SelectAbility(null, 1)
+            .TryGetFeature<Circle, StaminaTrainingFeature>().ShouldBeNull();
 }

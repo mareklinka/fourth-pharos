@@ -6,14 +6,9 @@ public static class CircleValidators
 
     public const int LocationMaxLength = 100;
 
-    public static void Name(string name)
+    public static void Name(string? name)
     {
-        if (string.IsNullOrWhiteSpace(name))
-        {
-            throw DomainExceptions.CircleExceptions.CircleNameEmpty();
-        }
-
-        if (name.Length > NameMaxLength)
+        if (name?.Length > NameMaxLength)
         {
             throw DomainExceptions.CircleExceptions.CircleNameTooLong(NameMaxLength);
         }

@@ -1,5 +1,5 @@
 @page "/circle/create"
-@page "/circle/edit/{Id:int}"
+@page "/circle/edit/{Id:guid}"
 
 @using FourthPharos.Host.Services
 
@@ -8,20 +8,29 @@
 
 <PageTitle>(ALPHA) Fourth Pharos - Edit Circle</PageTitle>
 
-<RadzenAccordion Multiple="true">
-    <Items>
-        <RadzenAccordionItem Text="Circle Name and Location">
-            <div style="display: flex;">
-                <RadzenText>Circle of: </RadzenText>
-                <RadzenTextBox @bind-Value=circleName Change=@(args => SetName()) class=@(IsCircleNameInvalid ? "invalid" : "") />
-            </div>
-            <div style="display: flex;">
-                <RadzenText>Chapter House Location: </RadzenText>
-                <RadzenTextBox @bind-Value=circleLocation Change=@(args => SetLocation()) />
-            </div>
-        </RadzenAccordionItem>
-        <RadzenAccordionItem Text="Role and Specialty">
-            <RadzenDropDown @bind-Value=@selectedRole Data=@Roles ValueProperty="" TextProperty="" />
-        </RadzenAccordionItem>
-    </Items>
-</RadzenAccordion>
+<div>
+    <div>Basic information</div>
+    <div style="display: flex;">
+        <RadzenText>Circle of: </RadzenText>
+        <RadzenTextBox @bind-Value=circleName Change=@(args => SetName()) class=@(IsCircleNameInvalid ? "invalid" : "") />
+    </div>
+    <div style="display: flex;">
+        <RadzenText>Chapter House Location: </RadzenText>
+        <RadzenTextBox @bind-Value=circleLocation Change=@(args => SetLocation()) />
+    </div>
+</div>
+
+<div>
+    <div>Abilities</div>
+    @for (var r = 1; r <= Model.Rank; ++r)
+    {
+        var rank = r;
+        <div>
+            <span>Rank @r:</span>
+            <RadzenDropDown Value="@GetAbilityAtRank(rank)" Data=@GetAvailableAbilities() TextProperty="Name" Change="@(args => SetAbility(rank, ((AbilityModel)args).Code))" TValue="AbilityModel"></RadzenDropDown>
+        </div>
+    }
+</div>
+
+
+
