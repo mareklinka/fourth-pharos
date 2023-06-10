@@ -17,7 +17,7 @@
     <RadzenStack class="grid-body" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Start" Wrap="FlexWrap.Wrap">
         @foreach (var c in circleService.GetCircles())
         {
-            <CircleCard @key="@c.Id" Name="@c.Name" Members="@c.Members" Location="@c.Location"></CircleCard>
+            <CircleCard @key="@c.Id" Id="@c.Id" Name="@c.Name" Members="@c.Members" Location="@c.Location"></CircleCard>
         }
     </RadzenStack>
 </div>

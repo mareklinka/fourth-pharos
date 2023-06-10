@@ -12,7 +12,7 @@ public class RestoreStaminaDiceOperationTest
     public void RestoreStaminaDie() =>
         CircleFactory
             .CreateCirle("Test Circle")
-            .AddAbility(CircleAbility.StaminaTraining.Code, 1)
+            .SelectAbility(CircleAbility.StaminaTraining.Code, 1)
             .ConsumeStaminaDice()
             .RestoreStaminaDice()
             .GetFeature<Circle, StaminaTrainingFeature>()
@@ -24,7 +24,7 @@ public class RestoreStaminaDiceOperationTest
         Should.Throw<DomainActionException>(() =>
             CircleFactory
                 .CreateCirle("Test Circle")
-                .AddAbility(CircleAbility.StaminaTraining.Code, 1)
+                .SelectAbility(CircleAbility.StaminaTraining.Code, 1)
                 .RestoreStaminaDice())
             .Code
             .ShouldBe(nameof(DomainExceptions.CircleExceptions.StaminaDiceFull));

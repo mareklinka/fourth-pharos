@@ -12,32 +12,10 @@ public class SetLocationOperationTest
     public void UpdateLocation() =>
         CircleFactory
             .CreateCirle("Test Circle")
-            .SetName("New Name")
-            .GetFeature<Circle, CircleNameFeature>()
-            .Name
+            .SetLocation("New Name")
+            .GetFeature<Circle, CircleLocationFeature>()
+            .Location
             .ShouldBe("New Name");
-
-    [Fact]
-    public void EmptyNameFails()
-    {
-        var circle = CircleFactory.CreateCirle("Test Circle");
-
-        Should
-            .Throw<DomainActionException>(() => circle.SetName(string.Empty))
-            .Code
-            .ShouldBe(nameof(DomainExceptions.CircleExceptions.CircleNameEmpty));
-    }
-
-    [Fact]
-    public void WhitespaceOnlyNameFails()
-    {
-        var circle = CircleFactory.CreateCirle("Test Circle");
-
-        Should
-            .Throw<DomainActionException>(() => circle.SetName(" \t"))
-            .Code
-            .ShouldBe(nameof(DomainExceptions.CircleExceptions.CircleNameEmpty));
-    }
 
     [Fact]
     public void NameMustNotExceedMaxLength()

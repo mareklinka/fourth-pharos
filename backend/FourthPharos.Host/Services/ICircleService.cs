@@ -6,5 +6,5 @@ public interface ICircleService
 {
     ICollection<CircleModel> GetCircles();
 
-    CircleModel CreateCircle(string name, Guid userId);
+    CircleModel CreateCircle(string? name, Guid userId);
 }

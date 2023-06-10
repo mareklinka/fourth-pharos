@@ -5,6 +5,9 @@ namespace FourthPharos.Host.Components;
 public partial class CircleCard
 {
     [Parameter]
+    public Guid Id { get; set; } = Guid.Empty;
+
+    [Parameter]
     public string Name { get; set; } = string.Empty;
 
     [Parameter]

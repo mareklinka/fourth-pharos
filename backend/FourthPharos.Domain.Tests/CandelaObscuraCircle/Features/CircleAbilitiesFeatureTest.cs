@@ -28,7 +28,7 @@ public class CircleAbilitiesFeatureTest
     public void AddingAbilityDecreasesAvailableAbilities() =>
         CircleFactory
             .CreateCirle("Test Circle")
-            .AddAbility(CircleAbility.ForgedInFire.Code, 1)
+            .SelectAbility(CircleAbility.ForgedInFire.Code, 1)
             .GetFeature<Circle, CircleAbilitiesFeature>()
             .AvailableAbilities
             .ShouldBe(0);
