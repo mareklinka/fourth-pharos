@@ -1,43 +1,15 @@
-using FourthPharos.Host.Services;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using FourthPharos.Host.Configuration;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
-using Microsoft.IdentityModel.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
-IdentityModelEventSource.ShowPII = true;
-
-// Add services to the container.
-builder
-    .Services
-    .AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAdB2C"));
+builder.Services.RegisterAuth(builder.Configuration);
 
 builder
     .Services
     .AddControllersWithViews()
     .AddMicrosoftIdentityUI();
-
-builder.Services.AddAuthorization(options =>
-{
-    // By default, all incoming requests will be authorized according to the default policy
-    options.FallbackPolicy = null;
-});
-
-builder.Services.Configure<OpenIdConnectOptions>(OpenIdConnectDefaults.AuthenticationScheme, options =>
-{
-    // Configures the Sign Out action to redirect back to the home page, which will navigate to the login page
-    options.Events.OnSignedOutCallbackRedirect = context =>
-    {
-        context.HttpContext.Response.Redirect(context.Options.SignedOutRedirectUri);
-        context.HandleResponse();
-
-        return Task.CompletedTask;
-    };
-});
-
-builder.Services.AddTransient<ICircleService, CircleService>();
 
 builder.Services.AddRazorPages();
 builder
@@ -45,13 +17,14 @@ builder
     .AddServerSideBlazor()
     .AddMicrosoftIdentityConsentHandler();
 
+builder.Services.RegisterServices();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 

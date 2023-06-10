@@ -1,11 +1,9 @@
 using FourthPharos.Host.Extensions;
 
-namespace FourthPharos.Host.Pages;
+namespace FourthPharos.Host.Pages.Circle;
 
 public partial class MyCircles
 {
-    private string newCircleName = string.Empty;
-
     private Guid userId = Guid.Empty;
 
     protected override async Task OnInitializedAsync()
