@@ -5,16 +5,19 @@
 
 @inject ICircleService circleService
 @inject AuthenticationStateProvider authStateProvider
+@inject NavigationManager navigator
+
+<PageTitle>(ALPHA) Fourth Pharos - My Circles</PageTitle>
 
 <div class="component-layout">
     <div class="grid-header">
         <span class="header">My Circles</span>
-        <div class="new-circle"><RadzenButton Icon="add" Text="New circle"></RadzenButton></div>
+        <div class="new-circle"><RadzenButton Icon="add" Text="New circle" Click="@(() => navigator.NavigateTo("/circle/create"))"></RadzenButton></div>
     </div>
     <RadzenStack class="grid-body" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Start" Wrap="FlexWrap.Wrap">
         @foreach (var c in circleService.GetCircles())
         {
-            <CircleCard Name="@c.Name" Members="@c.Members" @key="@c.Id"></CircleCard>
+            <CircleCard @key="@c.Id" Name="@c.Name" Members="@c.Members" Location="@c.Location"></CircleCard>
         }
     </RadzenStack>
 </div>

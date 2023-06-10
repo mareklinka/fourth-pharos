@@ -10,5 +10,7 @@ public sealed record CircleModel(Circle Circle, Guid OwnerId)
 
     public string Name => Circle.GetFeature<Circle, CircleNameFeature>().Name;
 
+    public string? Location => Circle.GetFeature<Circle, CircleLocationFeature>().Location;
+
     public int Members => Circle.Characters.Length;
 }

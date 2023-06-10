@@ -1,0 +1,27 @@
+@page "/circle/create"
+@page "/circle/edit/{Id:int}"
+
+@using FourthPharos.Host.Services
+
+@inject ICircleService circleService
+@inject AuthenticationStateProvider authStateProvider
+
+<PageTitle>(ALPHA) Fourth Pharos - Edit Circle</PageTitle>
+
+<RadzenAccordion Multiple="true">
+    <Items>
+        <RadzenAccordionItem Text="Circle Name and Location">
+            <div style="display: flex;">
+                <RadzenText>Circle of: </RadzenText>
+                <RadzenTextBox @bind-Value=circleName Change=@(args => SetName()) class=@(IsCircleNameInvalid ? "invalid" : "") />
+            </div>
+            <div style="display: flex;">
+                <RadzenText>Chapter House Location: </RadzenText>
+                <RadzenTextBox @bind-Value=circleLocation Change=@(args => SetLocation()) />
+            </div>
+        </RadzenAccordionItem>
+        <RadzenAccordionItem Text="Role and Specialty">
+            <RadzenDropDown @bind-Value=@selectedRole Data=@Roles ValueProperty="" TextProperty="" />
+        </RadzenAccordionItem>
+    </Items>
+</RadzenAccordion>
