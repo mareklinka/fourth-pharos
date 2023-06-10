@@ -9,4 +9,7 @@ public partial class CircleCard
 
     [Parameter]
     public int Members { get; set; }
+
+    [Parameter]
+    public string Location { get; set; } = string.Empty;
 }

@@ -9,7 +9,7 @@ public static class ServiceConfiguration
         services.AddSassCompiler();
 #endif
 
-        services.AddTransient<ICircleService, CircleService>();
+        services.AddScoped<ICircleService, CircleService>();
 
         return services;
     }
