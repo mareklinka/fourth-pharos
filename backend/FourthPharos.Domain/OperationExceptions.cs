@@ -82,5 +82,9 @@ public static class DomainExceptions
         public static DomainActionException ActionRatingFull(string actionCode) => new(nameof(ActionRatingFull), $"Insufficient rating for action {actionCode}");
 
         public static DomainActionException InsufficientMarks() => new(nameof(InsufficientMarks), "The character doesn't have enough marks");
+
+        public static DomainActionException InvalidIlluminationKey(string keyCode) => new(nameof(InvalidIlluminationKey), $"Illumination key {keyCode} does not exist", keyCode);
+
+        public static DomainActionException IlluminationKeyAlreadyMarked(string keyCode) => new(nameof(IlluminationKeyAlreadyMarked), $"Illumination key {keyCode} is already marked", keyCode);
     }
 }

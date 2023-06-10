@@ -5,7 +5,7 @@ using FourthPharos.Domain.Models;
 
 namespace FourthPharos.Domain.CandelaObscuraCharacter.Operations;
 
-public static class AddRoleOperation
+public static class SetRoleOperation
 {
     public static Character SetRole(this Character character, CharacterSpecialty specialty)
     {

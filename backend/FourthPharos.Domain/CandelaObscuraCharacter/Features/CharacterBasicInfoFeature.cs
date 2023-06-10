@@ -16,6 +16,4 @@ public sealed record CharacterBasicInfoFeature(Character Target, string Name) : 
     public string? Catalyst { get; init; }
 
     public string? Question { get; init; }
-
-    public static FeatureBase<Character> Create(Character target) => throw new NotImplementedException();
 }
