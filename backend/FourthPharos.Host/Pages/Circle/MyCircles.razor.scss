@@ -1,21 +1,16 @@
-.component-layout {
-    display: grid;
-    grid-template-areas:
-        'header header header'
-        'main main main';
-}
+@import '../../Styles/units.scss';
 
-.grid-header {
-    grid-area: header;
+.page-title {
     display: flex;
     align-items: center;
 
-    .header {
-        font-size: 2rem;
+    :first-child {
         flex-grow: 1;
     }
 }
 
-.grid-body {
-    grid-area: main;
+.circle-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 4rem;
 }

@@ -1,0 +1,42 @@
+@import '../Styles/_colors.scss';
+@import '../Styles/_units.scss';
+
+.circle-card {
+    border: $steel-dark solid 0.125rem;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 transparentize($color: $steel-dark, $amount: 0.7), 0 6px 20px 0 transparentize($color: $steel-dark, $amount: 0.7);
+
+    &:hover {
+        box-shadow: 0 4px 8px 0 transparentize($color: $steel-dark, $amount: 0.55), 0 6px 20px 0 transparentize($color: $steel-dark, $amount: 0.55);
+    }
+
+    .circle-name {
+        text-align: center;
+        font-weight: 600;
+        font-size: 2rem;
+        padding: $token-size-1;
+        flex-grow: 1;
+        color: $emerald-dark;
+        text-transform: capitalize;
+    }
+
+    .circle-location {
+        font-size: 1rem;
+        text-align: center;
+        padding: $token-size-0-5;
+        color: $copper-medium;
+        text-transform: capitalize;
+    }
+
+    .circle-actions {
+        background-color: $steel-light;
+        padding: $token-size-1;
+
+        .btn {
+            width: 100px;
+            margin-right: $token-size-1;
+        }
+    }
+}

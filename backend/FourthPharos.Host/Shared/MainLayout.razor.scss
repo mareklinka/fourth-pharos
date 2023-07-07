@@ -1,0 +1,44 @@
+@import "../Styles/_colors.scss";
+@import "../Styles/_units.scss";
+
+.main-layout {
+  display: grid;
+  grid-template: "head" "body";
+  grid-template-rows: 3rem auto;
+  height: calc(100vh - 1rem);
+
+  .app-title-bar {
+    display: flex;
+    grid-area: head;
+    background-color: $steel-dark;
+    padding: $token-size-1;
+    color: $steel-light;
+    align-items: center;
+
+    border-bottom: $steel-light solid 0.0625rem;
+
+    .app-menu {
+      font-weight: 500;
+      flex-grow: 1;
+      display: flex;
+      gap: $token-size-1;
+      font-size: 1.25rem;
+
+      a {
+        cursor: pointer;
+        &:hover {
+          color: $steel-very-light;
+        }
+      }
+    }
+  }
+
+  .app-body {
+    grid-area: body;
+    padding: $token-size-1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+  }
+}
